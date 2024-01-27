@@ -12,21 +12,14 @@ public partial class ArenaCamera : Camera2D
 	[Export] public float MaxZoom = 5f;
 	public Vector2 Margin = new Vector2(400f, 400f);
 
-	public HashSet<Node> Targets = new HashSet<Node>();
+	public HashSet<Node2D> Targets = new HashSet<Node2D>();
 	public Vector2 ScreenSize;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		if (Targets.Add(this.GetNode("player1")))
-		{
-			GD.Print("added p1");
-		}
+		
 
-		if (Targets.Add(this.GetNode("player2")))
-		{
-			GD.Print("added p2");
-		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -44,7 +37,7 @@ public partial class ArenaCamera : Camera2D
 		{
 			rect.Expand(n.Position);
 		}
-
+		
 		rect = rect.GrowIndividual(Margin.X, Margin.Y, Margin.X, Margin.Y);
 		float max = Math.Max(rect.Size.X, rect.Size.Y);
 		float zoom;
@@ -55,7 +48,7 @@ public partial class ArenaCamera : Camera2D
 		{
 			zoom = Math.Clamp(rect.Size.Y / ScreenSize.Y, MinZoom, MaxZoom);
 		}
-
+		
 		Zoom = Zoom.Lerp(Vector2.One * zoom, ZoomSpeed);
 
 	}
