@@ -1,6 +1,6 @@
-[gd_scene load_steps=2 format=3 uid="uid://cskqmkairoq0k"]
+[gd_scene load_steps=2 format=3 uid="uid://bcojofp8wspvw"]
 
-[ext_resource type="TileSet" uid="uid://b3dch05862edy" path="res://tileset.tres" id="1_4qw6u"]
+[ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_4qw6u"]
 
 [node name="NateScene" type="Node2D"]
 
