@@ -1,5 +1,8 @@
 using Godot;
 using System;
+using System.Numerics;
+using Laugh.code;
+using Vector2 = Godot.Vector2;
 
 public partial class PlayerController2 : CharacterBody2D
 {
@@ -20,15 +23,34 @@ public partial class PlayerController2 : CharacterBody2D
 	private String FastFallControl = "p1-fast-fall";
 	[Export] 
 	public String ActionControl = "p1-action";
+
+	[Export] public Vector2 WeaponOffset = Vector2.Zero;
 	
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	private bool canDoubleJump = true;
+	private Node2D _weapon;
 
 	public override void _Ready()
 	{
-		
+		SetWeapon(ResourceLoader.Load<PackedScene>("res://prototype/revolver.tscn").Instantiate<Gun>());
+	}
+
+	public void SetWeapon(Node2D weapon) 
+	{
+		this._weapon?.QueueFree();
+		weapon.Position = WeaponOffset;
+		this.AddChild(weapon);
+		this._weapon = weapon;
+	}
+
+	public override void _Process(double delta)
+	{
+		if (Input.IsActionJustPressed(ActionControl) && this._weapon != null)
+		{
+			this._weapon.Call("Fire");
+		}
 	}
 
 	public override void _PhysicsProcess(double delta)
