@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://bcojofp8wspvw"]
+[gd_scene load_steps=5 format=3 uid="uid://cskqmkairoq0k"]
 
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_4qw6u"]
+[ext_resource type="Script" path="res://code/character/PlayerController2.cs" id="4_eh2y8"]
+[ext_resource type="Texture2D" uid="uid://b3oaagq3y8iru" path="res://kenney_abstract-platformer/PNG/Enemies/enemyWalking_1.png" id="5_oni5p"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_mij0j"]
+radius = 18.6011
 
 [node name="NateScene" type="Node2D"]
 
@@ -8,4 +13,20 @@
 tile_set = ExtResource("1_4qw6u")
 format = 2
 layer_0/name = "Foreground"
-layer_0/tile_data = PackedInt32Array(65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 131086, 1, 0, 196621, 1, 0, 196620, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 2, 131073, 0, 3, 131073, 0, 4, 131073, 0, 5, 131073, 0, 6, 131073, 0, 7, 131073, 0, 8, 131073, 0, 9, 131073, 0, 10, 131073, 0, 11, 131073, 0, 12, 131073, 0, 13, 131073, 0, -196599, 327681, 0, -196598, 393217, 0, -196597, 458753, 0, 1, 262145, 2, -65535, 262145, 1, -131072, 262145, 1, -131073, 262145, 1, -65536, 262145, 2, -65537, 262145, 2, 0, 1, 2, -1, 1, 2, 65535, 1, 1, -2, 1, 1, 65534, 1, 0, -65538, 1, 0, -131074, 65537, 0, -196605, 458753, 2, -196603, 524289, 2, -196604, 131073, 0, -262140, 589825, 1, -65524, 720897, 1, -65529, 720897, 0, -196610, 720897, 0, -65533, 720897, 0, -65526, 655361, 1, -262135, 655361, 1)
+layer_0/tile_data = PackedInt32Array(65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 131086, 1, 0, 196621, 1, 0, 196620, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 2, 131073, 0, 3, 131073, 0, 4, 131073, 0, 5, 131073, 0, 6, 131073, 0, 7, 131073, 0, 8, 131073, 0, 9, 131073, 0, 10, 131073, 0, 11, 131073, 0, 12, 131073, 0, 13, 131073, 0, -196599, 327681, 0, -196598, 393217, 0, -196597, 458753, 0, 1, 262145, 2, -65535, 262145, 1, -131072, 262145, 1, -131073, 262145, 1, -65536, 262145, 2, -65537, 262145, 2, 0, 1, 2, -1, 1, 2, 65535, 1, 1, -2, 1, 1, 65534, 1, 0, -65538, 1, 0, -131074, 65537, 0, -196605, 458753, 2, -196603, 524289, 2, -196604, 131073, 0, -262140, 589825, 1, -65524, 720897, 1, -65529, 720897, 0, -196610, 720897, 0, -65533, 720897, 0, -65526, 655361, 1, -262135, 655361, 1, 327693, 1, 0, 393229, 1, 0, 458765, 1, 0, 524301, 1, 0, 262157, 1, 0)
+
+[node name="player1" type="CharacterBody2D" parent="."]
+position = Vector2(446, -115)
+scale = Vector2(1.41, 1.41)
+script = ExtResource("4_eh2y8")
+WeaponOffset = Vector2(30, 5)
+
+[node name="Sprite2D" type="Sprite2D" parent="player1"]
+position = Vector2(0, -1)
+texture = ExtResource("5_oni5p")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="player1"]
+shape = SubResource("CircleShape2D_mij0j")
+
+[node name="Camera2D" type="Camera2D" parent="."]
+position = Vector2(499, -112)
