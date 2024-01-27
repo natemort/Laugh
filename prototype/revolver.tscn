@@ -4,9 +4,9 @@
 [ext_resource type="Script" path="res://code/Gun.cs" id="2_otr6m"]
 
 [node name="Revolver" type="Sprite2D"]
-scale = Vector2(0.5, 0.5)
+scale = Vector2(0.35, 0.35)
 texture = ExtResource("1_ue6g1")
 script = ExtResource("2_otr6m")
 
 [node name="FirePoint" type="Node2D" parent="."]
-position = Vector2(60, -28)
+position = Vector2(60, -28.5714)

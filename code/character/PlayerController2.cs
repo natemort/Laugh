@@ -98,7 +98,6 @@ public partial class PlayerController2 : CharacterBody2D
 			velocity.Y += FastFallVelocity;
 		}
 
-		float startingDirection = velocity.X;
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		velocity.X = Speed * Input.GetAxis(LeftControl, RightControl);

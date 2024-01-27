@@ -1,0 +1,35 @@
+[gd_scene load_steps=5 format=3 uid="uid://4mnyiwsaqy56"]
+
+[ext_resource type="Texture2D" uid="uid://ligrnggk3gd6" path="res://texture/sword.png" id="1_akada"]
+[ext_resource type="Script" path="res://code/Sword.cs" id="2_c7ncn"]
+[ext_resource type="Texture2D" uid="uid://dsytnmkpm67ut" path="res://texture/sword_slash.png" id="3_h0vgl"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_gaeat"]
+size = Vector2(409.653, 353.177)
+
+[node name="Sword" type="Node2D"]
+position = Vector2(1, -41)
+scale = Vector2(0.05, 0.05)
+script = ExtResource("2_c7ncn")
+HitTimeMs = 100.0
+RecoverTimeMs = 250.0
+
+[node name="SlashEffect" type="Sprite2D" parent="."]
+position = Vector2(700, -317.25)
+scale = Vector2(1.88574, 1.88574)
+texture = ExtResource("3_h0vgl")
+
+[node name="SwordSprite" type="Sprite2D" parent="."]
+position = Vector2(-40, -400)
+texture = ExtResource("1_akada")
+
+[node name="Hitbox" type="Area2D" parent="."]
+position = Vector2(20, -297.25)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
+position = Vector2(440, -39.9999)
+scale = Vector2(1.88574, 1.88574)
+shape = SubResource("RectangleShape2D_gaeat")
+
+[node name="RotationPoint" type="Node2D" parent="."]
+position = Vector2(60, 280)

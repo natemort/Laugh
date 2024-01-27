@@ -20,12 +20,19 @@ public partial class Gun : Sprite2D, Weapon
 
 	public void Fire()
 	{
-		var bullet = _bulletPrototype.Instantiate<Bullet>();
-		this._lastFired = Time.GetTicksMsec();
-		this.GetTree().Root.AddChild(bullet);
-		var spawnPoint = this.GetChild<Node2D>(0).GlobalPosition;
-		bullet.GlobalPosition = spawnPoint;
-		var direction = ((spawnPoint - GlobalPosition) with { Y = 0 }).Normalized();
-		bullet.Velocity = direction * BulletSpeed;
+		if ((Time.GetTicksMsec() - _lastFired) > FireDelayMs)
+		{
+			this._lastFired = Time.GetTicksMsec();
+			var bullet = _bulletPrototype.Instantiate<Bullet>();
+			this.GetTree().Root.AddChild(bullet);
+			var spawnPoint = this.GetChild<Node2D>(0).GlobalPosition;
+			bullet.GlobalPosition = spawnPoint;
+			var direction = ((spawnPoint - GlobalPosition) with { Y = 0 }).Normalized();
+			if (direction.X < 0)
+			{
+				bullet.Scale = bullet.Scale with { X = -1 };
+			}
+			bullet.Velocity = direction * BulletSpeed;
+		}
 	}
 }
