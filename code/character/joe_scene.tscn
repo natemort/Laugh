@@ -1,20 +1,25 @@
-[gd_scene load_steps=7 format=3 uid="uid://cd6sros7a4wn1"]
+[gd_scene load_steps=6 format=3 uid="uid://cd6sros7a4wn1"]
 
 [ext_resource type="Script" path="res://code/character/PlayerController2.cs" id="1_4x5f6"]
+[ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_cbcgy"]
 [ext_resource type="Texture2D" uid="uid://b3oaagq3y8iru" path="res://kenney_abstract-platformer/PNG/Enemies/enemyWalking_1.png" id="2_slcq6"]
 [ext_resource type="Texture2D" uid="uid://b36y0henuau88" path="res://kenney_abstract-platformer/PNG/Enemies/enemyFlying_4.png" id="3_2ecdk"]
-[ext_resource type="Texture2D" uid="uid://c76nnm8tbx42w" path="res://kenney_abstract-platformer/PNG/Tiles/Green tiles/tileGreen_02.png" id="4_kh8cb"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh4i0"]
 radius = 18.6011
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_2w24q"]
-size = Vector2(64, 49)
-
 [node name="joe-scene" type="Node2D"]
+
+[node name="TileMap" type="TileMap" parent="."]
+position = Vector2(102, 139)
+tile_set = ExtResource("1_cbcgy")
+format = 2
+layer_0/name = "MapLayer"
+layer_0/tile_data = PackedInt32Array(65536, 262145, 0, 131072, 65537, 0, 131073, 131073, 0, 131074, 131073, 0, 131075, 131073, 0, 131076, 131073, 0, 131077, 196609, 0, 65541, 262145, 0, 6, 262145, 0, -65528, 196609, 0, -65529, 65537, 0, 131069, 262145, 0, 393214, 262145, 0, 327681, 262145, 0, 327682, 262145, 0, 327683, 262145, 0, 327684, 262145, 0, 327685, 262145, 0, 327686, 262145, 0, 327687, 262145, 0, 262151, 262145, 0, 262152, 262145, 0, 262153, 262145, 0, 196617, 262145, 0, -327671, 262145, 0, -327672, 262145, 0, -327673, 262145, 0, -327674, 262145, 0, -393211, 262145, 0, -393212, 262145, 0, -393213, 262145, 0, -393214, 262145, 0, -393215, 262145, 0, -327680, 262145, 0, -262145, 262145, 0, -262146, 262145, 0, -262147, 262145, 0, 65546, 262145, 0, 65547, 262145, 0, -65525, 262145, 0, -65524, 262145, 0, -327670, 262145, 0, -327669, 262145, 0, -327668, 262145, 0, -327667, 262145, 0, -327666, 262145, 0, -327665, 262145, 0, -262129, 262145, 0, -262128, 262145, 0, -196592, 262145, 0, -196591, 262145, 0, -262148, 262145, 0, -262149, 262145, 0, -196613, 262145, 0, -196614, 262145, 0, -196615, 262145, 0, -131079, 262145, 0, -131080, 262145, 0, -131081, 262145, 0, -65545, 262145, 0, -65546, 262145, 0, -11, 262145, 0, 65524, 262145, 0, 131060, 262145, 0, 131059, 262145, 0, 196595, 262145, 0, 262131, 262145, 0, 327667, 262145, 0, 393202, 262145, 0, 458739, 262145, 0, 524275, 262145, 0, 524276, 262145, 0, 524277, 262145, 0, 524278, 262145, 0, 524279, 262145, 0, 524280, 262145, 0, 524281, 262145, 0, 458746, 262145, 0, 524282, 262145, 0, 589819, 262145, 0, 589820, 262145, 0, 589821, 262145, 0, 589822, 262145, 0, 589823, 262145, 0, 524288, 262145, 0, 524289, 262145, 0, 524290, 262145, 0, 589826, 262145, 0, 589827, 262145, 0, 589828, 262145, 0, 589829, 262145, 0, 589830, 262145, 0, 589831, 262145, 0, 524295, 262145, 0, 524296, 262145, 0, 524297, 262145, 0, 524298, 262145, 0, 524299, 262145, 0, 524300, 262145, 0, 524301, 262145, 0, 524302, 262145, 0, 589832, 262145, 0, 524293, 262145, 0, 524292, 262145, 0, 524291, 262145, 0, 524294, 262145, 0, 393204, 262145, 0, 458747, 262145, 0, 393209, 262145, 0, 327672, 262145, 0, 393210, 262145, 0, 327671, 262145, 0, -131068, 524289, 0, -65535, 524289, 0, 131065, 524289, 0, 131066, 524289, 0, -4, 524289, 0, -131074, 524289, 0, -131073, 524289, 0, -196608, 524289, 0, 131086, 524289, 0, 327693, 524289, 0, 393227, 524289, 0, 196619, 524289, 0, 458767, 196609, 1, 393233, 196609, 1, 327699, 196609, 1, 524303, 131073, 0, 524304, 131073, 0, 458768, 131073, 0, 458769, 131073, 0, 458770, 131073, 0, 393234, 131073, 0, 393235, 131073, 0, 393236, 131073, 0, 327700, 131073, 0, 262165, 131073, 0, 327701, 131073, 0, 196626, 131073, 0, 196625, 131073, 0, 196624, 131073, 0, 196630, 131073, 0, 131094, 131073, 0, 65558, 131073, 0, 22, 131073, 0, -65514, 131073, 0, -131050, 131073, 0, -196586, 131073, 0, -196587, 131073, 0, -196588, 131073, 0, -196589, 131073, 0, -196590, 131073, 0, 20, 131073, 0, 17, 131073, 0, -196599, 131073, 0)
 
 [node name="player1" type="CharacterBody2D" parent="."]
 position = Vector2(307, 131)
+scale = Vector2(1.41, 1.41)
 script = ExtResource("1_4x5f6")
 
 [node name="Sprite2D" type="Sprite2D" parent="player1"]
@@ -26,6 +31,13 @@ shape = SubResource("CircleShape2D_bh4i0")
 
 [node name="player2" type="CharacterBody2D" parent="."]
 position = Vector2(246, 136)
+scale = Vector2(1.4, 1.4)
+script = ExtResource("1_4x5f6")
+LeftControl = "p2-left"
+RightControl = "p2-right"
+JumpControl = "p2-jump"
+FastFallControl = "p2-fast-fall"
+ActionControl = "p2-action"
 
 [node name="Sprite2D" type="Sprite2D" parent="player2"]
 position = Vector2(-3.8147e-06, -6.67572e-06)
@@ -34,58 +46,3 @@ texture = ExtResource("3_2ecdk")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player2"]
 shape = SubResource("CircleShape2D_bh4i0")
-
-[node name="StaticBody2D" type="StaticBody2D" parent="."]
-position = Vector2(226, 203)
-
-[node name="TileGreen02" type="Sprite2D" parent="StaticBody2D"]
-position = Vector2(0.422058, 0.409119)
-texture = ExtResource("4_kh8cb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D"]
-position = Vector2(1, 0.5)
-shape = SubResource("RectangleShape2D_2w24q")
-
-[node name="StaticBody2D2" type="StaticBody2D" parent="."]
-position = Vector2(354, 203)
-
-[node name="TileGreen02" type="Sprite2D" parent="StaticBody2D2"]
-position = Vector2(0.422058, 0.409119)
-texture = ExtResource("4_kh8cb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D2"]
-position = Vector2(1, 0.5)
-shape = SubResource("RectangleShape2D_2w24q")
-
-[node name="StaticBody2D3" type="StaticBody2D" parent="."]
-position = Vector2(290, 203)
-
-[node name="TileGreen02" type="Sprite2D" parent="StaticBody2D3"]
-position = Vector2(0.422058, 0.409119)
-texture = ExtResource("4_kh8cb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D3"]
-position = Vector2(1, 0.5)
-shape = SubResource("RectangleShape2D_2w24q")
-
-[node name="StaticBody2D4" type="StaticBody2D" parent="."]
-position = Vector2(466, 104)
-
-[node name="TileGreen02" type="Sprite2D" parent="StaticBody2D4"]
-position = Vector2(0.422058, 0.409119)
-texture = ExtResource("4_kh8cb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D4"]
-position = Vector2(1, 0.5)
-shape = SubResource("RectangleShape2D_2w24q")
-
-[node name="StaticBody2D5" type="StaticBody2D" parent="."]
-position = Vector2(416, 154)
-
-[node name="TileGreen02" type="Sprite2D" parent="StaticBody2D5"]
-position = Vector2(0.422058, 0.409119)
-texture = ExtResource("4_kh8cb")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="StaticBody2D5"]
-position = Vector2(1, 0.5)
-shape = SubResource("RectangleShape2D_2w24q")
