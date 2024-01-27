@@ -9,7 +9,6 @@ public partial class Gun : Sprite2D, Weapon
 	[Export]
 	public float BulletSpeed = 1500;
 
-	[Export] public Vector2 BulletOffset = Vector2.Zero;
 	private double _lastFired;
 
 	private PackedScene _bulletPrototype;
@@ -24,7 +23,9 @@ public partial class Gun : Sprite2D, Weapon
 		var bullet = _bulletPrototype.Instantiate<Bullet>();
 		this._lastFired = Time.GetTicksMsec();
 		this.GetTree().Root.AddChild(bullet);
-		bullet.GlobalPosition = this.GlobalPosition + BulletOffset;
-		bullet.Velocity = Vector2.Right * BulletSpeed;
+		var spawnPoint = this.GetChild<Node2D>(0).GlobalPosition;
+		bullet.GlobalPosition = spawnPoint;
+		var direction = ((spawnPoint - GlobalPosition) with { Y = 0 }).Normalized();
+		bullet.Velocity = direction * BulletSpeed;
 	}
 }
