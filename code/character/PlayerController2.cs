@@ -11,9 +11,8 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	[Export] public float FastFallVelocity = 400f;
 
 	[Signal]
-	public delegate void DeathSignalEventHandler();
+	public delegate void DeathSignalEventHandler(PlayerController2 player);
 
-	public int Health = 3;
 	[Export] 
 	public string PlayerName = "p1";
 
@@ -31,6 +30,21 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	public String DeathControl = "p1-death";
 
 	[Export] public Vector2 WeaponOffset = Vector2.Zero;
+
+	private int _health = 3;
+	public int Health
+	{
+		get
+		{
+			return _health;
+		}
+		set
+		{
+			_health = value;
+			this.GetNode<HUD>("../HUD/HUD").UpdatePlayerHealth(this);
+		}
+	}
+
 	
 
 	// Get the gravity from the project settings to be synced with RigidBody nodes.
@@ -117,10 +131,8 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 
 	public void Kill()
 	{
-		HUD hud = this.GetNode<HUD>("../HUD/HUD");
 		Health--;
-		
-		hud.UpdatePlayerHealth(this);
+		EmitSignal(SignalName.DeathSignal, this);
 	}
 }
 
