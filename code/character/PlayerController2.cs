@@ -83,7 +83,7 @@ public partial class PlayerController2 : CharacterBody2D
 			
 		} else if (Input.IsActionJustPressed(FastFallControl) && !IsOnFloor()) // Fast Fall
 		{
-			if (velocity.Y > 0) velocity = Vector2.Zero;
+			if (velocity.Y < 0) velocity = Vector2.Zero;
 			velocity.Y += FastFallVelocity;
 		}
 

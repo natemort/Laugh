@@ -36,27 +36,27 @@ public partial class ArenaCamera : Camera2D
 		foreach (Node2D n in Targets)
 		{
 			rect = rect.Expand(n.Position);
-			GD.Print("include: " + n.GlobalPosition);
+			// GD.Print("include: " + n.GlobalPosition);
 		}
 		
 		rect = rect.GrowIndividual(Margin.X, Margin.Y, Margin.X, Margin.Y);
 		float z;
-		GD.Print("x:" + rect.Size.X + " y*aspect:" + (rect.Size.Y * ScreenSize.Aspect()));
+		// GD.Print("x:" + rect.Size.X + " y*aspect:" + (rect.Size.Y * ScreenSize.Aspect()));
 		if (rect.Size.X > rect.Size.Y * ScreenSize.Aspect())
 		{
 			z = 1 / Math.Clamp(rect.Size.X / ScreenSize.X, MaxZoom, MinZoom);
-			GD.Print("x is bigger");
-			GD.Print(rect.Size.X / ScreenSize.X);
+			// GD.Print("x is bigger");
+			// GD.Print(rect.Size.X / ScreenSize.X);
 		} else
 		{
 			z = 1 / Math.Clamp(rect.Size.Y / ScreenSize.Y, MaxZoom, MinZoom);
-			GD.Print("y is bigger ");
-			GD.Print(rect.Size.Y / ScreenSize.Y);
+			// GD.Print("y is bigger ");
+			// GD.Print(rect.Size.Y / ScreenSize.Y);
 		}
 		// GD.Print(z);
 		
 		Zoom = Zoom.Lerp(Vector2.One * z, ZoomSpeed * (float)delta);
-		GD.Print(Zoom);
+		// GD.Print(Zoom);
 
 	}
 }
