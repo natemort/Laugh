@@ -2,6 +2,7 @@ using Godot;
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using Godot.Collections;
 
 public partial class ArenaCamera : Camera2D
 {
@@ -10,15 +11,20 @@ public partial class ArenaCamera : Camera2D
 	[Export] public float ZoomSpeed = 3f;
 	[Export] public float MinZoom = 5f; // camera wont zoom closer than this
 	[Export] public float MaxZoom = 0.5f; // camera wont zoom farther than this
-	public Vector2 Margin = new Vector2(400f, 250f);
+	[Export] public Array<NodePath> Targets = new();
+	[Export] public Vector2 Margin = new Vector2(400f, 250f);
 
-	public HashSet<Node2D> Targets = new HashSet<Node2D>();
-	public Vector2 ScreenSize;
+	private HashSet<Node2D> _targets = new HashSet<Node2D>();
+	private Vector2 ScreenSize;
 	
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		ScreenSize = this.GetViewportRect().Size;
+		foreach (NodePath path in Targets)
+		{
+			_targets.Add(GetNode<Node2D>(path));
+		}
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -26,14 +32,14 @@ public partial class ArenaCamera : Camera2D
 	{
 		// Camera cenetered between 2 targets
 		var positions = Vector2.Zero;
-		foreach(Node2D n in Targets) positions += n.Position;
-		positions /= Targets.Count;
+		foreach(Node2D n in _targets) positions += n.Position;
+		positions /= _targets.Count;
 		Position = Position.Lerp(positions, MoveSpeed * (float)delta);
 		
 		
 		// Zoom handling
 		Rect2 rect = new Rect2(Position, Vector2.One);
-		foreach (Node2D n in Targets)
+		foreach (Node2D n in _targets)
 		{
 			rect = rect.Expand(n.Position);
 			// GD.Print("include: " + n.GlobalPosition);
