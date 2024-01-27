@@ -57,4 +57,5 @@ shape = SubResource("CircleShape2D_bh4i0")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(700, 269)
 script = ExtResource("7_ufxl1")
-MinZoom = 0.01
+MoveSpeed = 5.0
+ZoomSpeed = 3.0
