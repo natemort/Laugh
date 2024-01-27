@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cd6sros7a4wn1"]
+[gd_scene load_steps=10 format=3 uid="uid://cd6sros7a4wn1"]
 
 [ext_resource type="Script" path="res://code/character/PlayerController2.cs" id="1_4x5f6"]
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_cbcgy"]
@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://b36y0henuau88" path="res://kenney_abstract-platformer/PNG/Enemies/enemyFlying_4.png" id="3_2ecdk"]
 [ext_resource type="Script" path="res://code/character/JoeTileMap.cs" id="3_o7h4i"]
 [ext_resource type="Script" path="res://code/character/ArenaCamera.cs" id="7_ufxl1"]
+[ext_resource type="PackedScene" uid="uid://brlnubnrldbgt" path="res://code/HUD/hud.tscn" id="8_nodnu"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh4i0"]
 radius = 18.6011
@@ -40,11 +41,13 @@ position = Vector2(1166, 253)
 scale = Vector2(1.4, 1.4)
 script = ExtResource("1_4x5f6")
 JumpVelocity = -800.0
+PlayerName = "p2"
 LeftControl = "p2-left"
 RightControl = "p2-right"
 JumpControl = "p2-jump"
 FastFallControl = "p2-fast-fall"
 ActionControl = "p2-action"
+DeathControl = "p2-death"
 
 [node name="Sprite2D" type="Sprite2D" parent="player2"]
 position = Vector2(-3.8147e-06, -6.67572e-06)
@@ -57,5 +60,5 @@ shape = SubResource("CircleShape2D_bh4i0")
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(700, 269)
 script = ExtResource("7_ufxl1")
-MoveSpeed = 5.0
-ZoomSpeed = 3.0
+
+[node name="HUD" parent="." instance=ExtResource("8_nodnu")]

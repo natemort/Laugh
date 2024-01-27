@@ -6,12 +6,16 @@ using Vector2 = Godot.Vector2;
 
 public partial class PlayerController2 : CharacterBody2D
 {
+	[Export] public float Speed = 300.0f;
+	[Export] public float JumpVelocity = -600f;
+	[Export] public float FastFallVelocity = 400f;
+
+	[Signal]
+	public delegate void DeathSignalEventHandler();
+
+	public int Health = 3;
 	[Export] 
-	public float Speed = 300.0f;
-	[Export] 
-	public float JumpVelocity = -600f;
-	[Export] 
-	public float FastFallVelocity = 400f;
+	public string PlayerName = "p1";
 
 	[Export] 
 	public String LeftControl = "p1-left";
@@ -23,6 +27,8 @@ public partial class PlayerController2 : CharacterBody2D
 	private String FastFallControl = "p1-fast-fall";
 	[Export] 
 	public String ActionControl = "p1-action";
+	[Export] 
+	public String DeathControl = "p1-death";
 
 	[Export] public Vector2 WeaponOffset = Vector2.Zero;
 	
@@ -61,6 +67,11 @@ public partial class PlayerController2 : CharacterBody2D
 	{
 		Vector2 velocity = Velocity;
 		
+		// Handle death conditions
+		if (Input.IsActionJustPressed(DeathControl))
+		{
+			OnDeath();
+		}
 
 		// Add the gravity.
 		if (!IsOnFloor())
@@ -103,6 +114,14 @@ public partial class PlayerController2 : CharacterBody2D
 
 		this.Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	public void OnDeath()
+	{
+		HUD hud = this.GetNode<HUD>("../HUD/HUD");
+		Health--;
+		
+		hud.UpdatePlayerHealth(this);
 	}
 }
 
