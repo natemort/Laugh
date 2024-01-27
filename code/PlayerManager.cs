@@ -6,13 +6,20 @@ public partial class PlayerManager : Node2D
 {
 	private List<PlayerController2> _players;
 	// Called when the node enters the scene tree for the first time.
+	private Godot.Collections.Array<Node> spawnPoints;
 	public override void _Ready()
 	{
 		GD.Print("Ready!!");
 		_players = FindPlayers(GetTree().Root);
+
+		spawnPoints = this.GetTree().GetNodesInGroup("SpawnPoints");
+		
 		foreach (var player in _players)
 		{
 			player.DeathSignal += OnPlayerDeath;
+			int index = Random.Shared.Next() % spawnPoints.Count;
+			Node2D n = (Node2D)spawnPoints[index];
+			player.Position = n.Position;
 		}
 	}
 
@@ -26,6 +33,7 @@ public partial class PlayerManager : Node2D
 				other.Health++;
 			}
 		}
+		Respawn();
 	}
 
 	private List<PlayerController2> FindPlayers(Node node)
@@ -45,6 +53,23 @@ public partial class PlayerManager : Node2D
 		}
 
 		return result;
+	}
+
+	private void Respawn()
+	{
+		HashSet<int> s = new HashSet<int>();
+		foreach (PlayerController2 player in _players)
+		{
+			int index = Random.Shared.Next() % spawnPoints.Count;
+			while (s.Contains(index))
+			{
+				index = Random.Shared.Next() % spawnPoints.Count;
+			}
+
+			s.Add(index);
+			Node2D n = (Node2D)spawnPoints[index];
+			player.Position = n.Position;
+		}
 	}
 	
 }

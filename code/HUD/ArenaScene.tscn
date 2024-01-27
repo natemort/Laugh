@@ -60,3 +60,134 @@ script = ExtResource("5_eud4v")
 Targets = [NodePath("../player1"), NodePath("../player2")]
 
 [node name="HUD" parent="." instance=ExtResource("6_s8n7k")]
+
+[node name="SpawnPoints" type="CanvasLayer" parent="."]
+
+[node name="location" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-990, -690)
+
+[node name="location2" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-731, -884)
+
+[node name="location3" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-481, -763)
+
+[node name="location4" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-1395, -687)
+
+[node name="location5" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-1341, -1076)
+
+[node name="location6" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(419, -689)
+
+[node name="location7" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-419, -563)
+
+[node name="location8" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-601, -244)
+
+[node name="location9" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-1023, -246)
+
+[node name="location10" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-1368, -238)
+
+[node name="location11" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-2130, -548)
+
+[node name="location12" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-156, 92)
+
+[node name="location13" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-1079, 205)
+
+[node name="location14" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-1409, 200)
+
+[node name="location15" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-2311, 78)
+
+[node name="location16" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-2325, -886)
+
+[node name="location17" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(230, -428)
+
+[node name="location18" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(557, 334)
+
+[node name="location19" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(444, -243)
+
+[node name="location20" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(870, -490)
+
+[node name="location21" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(1220, -879)
+
+[node name="location22" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(1664, -1080)
+
+[node name="location23" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(1553, -502)
+
+[node name="location24" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(1534, -48)
+
+[node name="location25" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(2425, -373)
+
+[node name="location26" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(2774, -379)
+
+[node name="location27" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(2425, -575)
+
+[node name="location28" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(2756, -580)
+
+[node name="location29" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(2442, -759)
+
+[node name="location30" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(2755, -762)
+
+[node name="location31" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(468, -1138)
+
+[node name="location32" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(2069, -1253)
+
+[node name="location33" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(2581, -1254)
+
+[node name="location34" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(1609, -744)
+
+[node name="location35" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(2963, 88)
+
+[node name="location36" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(1981, 72)
+
+[node name="location37" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(1176, -51)
+
+[node name="location38" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-1367, -66)
+
+[node name="location39" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-1009, -58)
+
+[node name="location40" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-2340, -1068)
+
+[node name="location41" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-2202, -1069)
+
+[node name="location42" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-1863, 271)
+
+[node name="location43" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(-684, 279)
