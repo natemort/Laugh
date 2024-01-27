@@ -6,8 +6,8 @@ using System.Collections.Generic;
 public partial class ArenaCamera : Camera2D
 {
 
-	[Export] public float MoveSpeed = 0.5f;
-	[Export] public float ZoomSpeed = 0.05f;
+	[Export] public float MoveSpeed = 5f;
+	[Export] public float ZoomSpeed = 3f;
 	[Export] public float MinZoom = 5f; // camera wont zoom closer than this
 	[Export] public float MaxZoom = 0.5f; // camera wont zoom farther than this
 	public Vector2 Margin = new Vector2(400f, 250f);
