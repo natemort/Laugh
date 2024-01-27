@@ -36,6 +36,7 @@ public partial class PlayerController2 : CharacterBody2D
 
 	public override void _Ready()
 	{
+
 		SetWeapon(ResourceLoader.Load<PackedScene>("res://prototype/revolver.tscn").Instantiate<Gun>());
 		_initialXScale = this.Scale.X;
 	}
@@ -82,6 +83,7 @@ public partial class PlayerController2 : CharacterBody2D
 			
 		} else if (Input.IsActionJustPressed(FastFallControl) && !IsOnFloor()) // Fast Fall
 		{
+			if (velocity.Y > 0) velocity = Vector2.Zero;
 			velocity.Y += FastFallVelocity;
 		}
 
@@ -90,10 +92,8 @@ public partial class PlayerController2 : CharacterBody2D
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		velocity.X = Speed * Input.GetAxis(LeftControl, RightControl);
 
-		GD.Print("Starting Direction: " + startingDirection);
 		if ((_isForward && velocity.X < 0) || (!_isForward && velocity.X > 0) )
 		{
-			GD.Print("Flipping");
 			_isForward = !_isForward;
 			this.Scale = this.Scale with
 			{
