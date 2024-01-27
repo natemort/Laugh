@@ -31,10 +31,13 @@ public partial class PlayerController2 : CharacterBody2D
 	public float gravity = ProjectSettings.GetSetting("physics/2d/default_gravity").AsSingle();
 	private bool canDoubleJump = true;
 	private Node2D _weapon;
+	private float _initialXScale;
+	private bool _isForward = true;
 
 	public override void _Ready()
 	{
 		SetWeapon(ResourceLoader.Load<PackedScene>("res://prototype/revolver.tscn").Instantiate<Gun>());
+		_initialXScale = this.Scale.X;
 	}
 
 	public void SetWeapon(Node2D weapon) 
@@ -83,9 +86,21 @@ public partial class PlayerController2 : CharacterBody2D
 			velocity.Y += FastFallVelocity;
 		}
 
+		float startingDirection = velocity.X;
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
 		velocity.X = Speed * Input.GetAxis(LeftControl, RightControl);
+
+		GD.Print("Starting Direction: " + startingDirection);
+		if ((_isForward && velocity.X < 0) || (!_isForward && velocity.X > 0) )
+		{
+			GD.Print("Flipping");
+			_isForward = !_isForward;
+			this.Scale = this.Scale with
+			{
+				X = -_initialXScale
+			};
+		}
 
 		this.Velocity = velocity;
 		MoveAndSlide();
