@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Linq;
 
 public partial class HUD : CanvasLayer
 {
@@ -19,12 +20,14 @@ public partial class HUD : CanvasLayer
 
 	public void UpdatePlayerHealth(PlayerController2 player)
 	{
+		if (player.Health < 0) return;
+		String h = String.Concat(Enumerable.Repeat("Ha", player.Health));
 		if (player.PlayerName.Equals("p1"))
 		{
-			this.GetNode<Label>("Player1HealthLabel").Text = player.Health.ToString();
+			this.GetNode<Label>("Player1HealthLabel").Text = h;
 		} else if (player.PlayerName.Equals("p2"))
 		{
-			this.GetNode<Label>("Player2HealthLabel").Text = player.Health.ToString();
+			this.GetNode<Label>("Player2HealthLabel").Text = h;
 		}
 	}
 
