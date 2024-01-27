@@ -7,6 +7,20 @@ public partial class PlayerManager : Node2D
 	private List<PlayerController2> _players;
 	// Called when the node enters the scene tree for the first time.
 	private Godot.Collections.Array<Node> spawnPoints;
+
+	[Export]
+	private bool test = false;
+	
+	private float _currentPauseTimeMs;
+	private float _waitTimeMs = 1500;
+	private RespawnState _respawnState = RespawnState.none;
+	
+	private enum RespawnState
+	{
+		none,
+		death,
+		preSpawn
+	}
 	public override void _Ready()
 	{
 		GD.Print("Ready!!");
@@ -17,9 +31,30 @@ public partial class PlayerManager : Node2D
 		foreach (var player in _players)
 		{
 			player.DeathSignal += OnPlayerDeath;
-			int index = Random.Shared.Next() % spawnPoints.Count;
-			Node2D n = (Node2D)spawnPoints[index];
-			player.Position = n.Position;
+			if (test)
+			{
+				TestRespawn();
+			}
+			else
+			{
+				int index = Random.Shared.Next() % spawnPoints.Count;
+				Node2D n = (Node2D)spawnPoints[index];
+				player.Position = n.Position;
+			}
+		}
+	}
+
+	public override void _Process(double delta)
+	{
+		
+		// if there was a player death, set their phsyics to nothing and enable death pause
+		if (_respawnState == RespawnState.death && Time.GetTicksMsec() - _currentPauseTimeMs >= _waitTimeMs)
+		{
+			// now respawn them
+			Respawn();
+		} else if (_respawnState == RespawnState.preSpawn && Time.GetTicksMsec() - _currentPauseTimeMs >= _waitTimeMs)
+		{
+			ResumePlayerProcessing();
 		}
 	}
 
@@ -33,7 +68,7 @@ public partial class PlayerManager : Node2D
 				other.Health++;
 			}
 		}
-		Respawn();
+		StopPlayerProcessing();
 	}
 
 	private List<PlayerController2> FindPlayers(Node node)
@@ -55,21 +90,63 @@ public partial class PlayerManager : Node2D
 		return result;
 	}
 
-	private void Respawn()
+	private void StopPlayerProcessing()
 	{
-		HashSet<int> s = new HashSet<int>();
 		foreach (PlayerController2 player in _players)
 		{
-			int index = Random.Shared.Next() % spawnPoints.Count;
-			while (s.Contains(index))
-			{
-				index = Random.Shared.Next() % spawnPoints.Count;
-			}
+			GD.Print("disable player: " + player.PlayerName);
+			player.StopPhysics = true;
+		}
+		_currentPauseTimeMs = Time.GetTicksMsec();
+		_respawnState = RespawnState.death;
+	}
 
-			s.Add(index);
-			Node2D n = (Node2D)spawnPoints[index];
+	private void ResumePlayerProcessing()
+	{
+		foreach (PlayerController2 player in _players)
+		{
+			GD.Print("reenable player: " + player.PlayerName);
+			player.StopPhysics = false;
+		}
+
+		_respawnState = RespawnState.none;
+	}
+
+	private void Respawn()
+	{
+		if (test)
+		{
+			TestRespawn();
+		}
+		else
+		{
+			HashSet<int> s = new HashSet<int>();
+			foreach (PlayerController2 player in _players)
+			{
+				int index = Random.Shared.Next() % spawnPoints.Count;
+				while (s.Contains(index))
+				{
+					index = Random.Shared.Next() % spawnPoints.Count;
+				}
+
+				s.Add(index);
+				Node2D n = (Node2D)spawnPoints[index];
+				player.Position = n.Position;
+			}
+		}
+		// delay again
+		_currentPauseTimeMs = Time.GetTicksMsec();
+		_respawnState = RespawnState.preSpawn;
+	}
+
+	private void TestRespawn()
+	{
+		int i = 8;
+		foreach (PlayerController2 player in _players)
+		{
+			Node2D n = (Node2D)spawnPoints[i];
 			player.Position = n.Position;
+			i++;
 		}
 	}
-	
 }

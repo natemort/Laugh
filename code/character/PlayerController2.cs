@@ -53,6 +53,7 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	private Node2D _weapon;
 	private float _initialXScale;
 	private bool _isForward = true;
+	public bool StopPhysics = false;
 
 	public override void _Ready()
 	{
@@ -71,6 +72,7 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 
 	public override void _Process(double delta)
 	{
+		if (StopPhysics) return;
 		if (Input.IsActionJustPressed(ActionControl) && this._weapon != null)
 		{
 			this._weapon.Call("Fire");
@@ -79,6 +81,7 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 
 	public override void _PhysicsProcess(double delta)
 	{
+		if (StopPhysics) return;
 		Vector2 velocity = Velocity;
 		
 		// Handle death conditions
