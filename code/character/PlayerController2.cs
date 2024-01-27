@@ -4,7 +4,7 @@ using System.Numerics;
 using Laugh.code;
 using Vector2 = Godot.Vector2;
 
-public partial class PlayerController2 : CharacterBody2D
+public partial class PlayerController2 : CharacterBody2D, Killable
 {
 	[Export] public float Speed = 300.0f;
 	[Export] public float JumpVelocity = -600f;
@@ -70,7 +70,7 @@ public partial class PlayerController2 : CharacterBody2D
 		// Handle death conditions
 		if (Input.IsActionJustPressed(DeathControl))
 		{
-			OnDeath();
+			Kill();
 		}
 
 		// Add the gravity.
@@ -115,7 +115,7 @@ public partial class PlayerController2 : CharacterBody2D
 		MoveAndSlide();
 	}
 
-	public void OnDeath()
+	public void Kill()
 	{
 		HUD hud = this.GetNode<HUD>("../HUD/HUD");
 		Health--;

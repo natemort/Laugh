@@ -8,6 +8,7 @@ size = Vector2(22, 4)
 
 [node name="Bullet" type="Area2D"]
 script = ExtResource("1_6xlme")
+metadata/Lethal = true
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
 texture = ExtResource("2_dn3rr")

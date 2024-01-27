@@ -1,7 +1,8 @@
 using Godot;
 using System;
+using Laugh.code;
 
-public partial class Bullet : Area2D
+public partial class Bullet : Area2D, Killable
 {
 	public Vector2 Velocity { get; set; } = Vector2.Right;
 
@@ -16,7 +17,7 @@ public partial class Bullet : Area2D
 	{
 		if (Time.GetTicksMsec() - _spawnTime > 10_000)
 		{
-			this.QueueFree();
+			Kill();
 		}
 	}
 
@@ -27,7 +28,15 @@ public partial class Bullet : Area2D
 
 	public void OnBodyEntered(Node2D node)
 	{
-		// TODO: kill fuckers
+		if (node is Killable k)
+		{
+			k.Kill();
+		}
+		Kill();
+	}
+
+	public void Kill()
+	{
 		this.QueueFree();
 	}
 }

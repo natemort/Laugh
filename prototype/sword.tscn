@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://4mnyiwsaqy56"]
+[gd_scene load_steps=6 format=3 uid="uid://4mnyiwsaqy56"]
 
 [ext_resource type="Texture2D" uid="uid://ligrnggk3gd6" path="res://texture/sword.png" id="1_akada"]
 [ext_resource type="Script" path="res://code/Sword.cs" id="2_c7ncn"]
 [ext_resource type="Texture2D" uid="uid://dsytnmkpm67ut" path="res://texture/sword_slash.png" id="3_h0vgl"]
+[ext_resource type="Script" path="res://code/KillArea.cs" id="4_6e6sw"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_gaeat"]
 size = Vector2(409.653, 353.177)
@@ -25,6 +26,8 @@ texture = ExtResource("1_akada")
 
 [node name="Hitbox" type="Area2D" parent="."]
 position = Vector2(20, -297.25)
+script = ExtResource("4_6e6sw")
+metadata/Lethal = true
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
 position = Vector2(440, -39.9999)
@@ -33,3 +36,5 @@ shape = SubResource("RectangleShape2D_gaeat")
 
 [node name="RotationPoint" type="Node2D" parent="."]
 position = Vector2(60, 280)
+
+[connection signal="body_entered" from="Hitbox" to="Hitbox" method="OnBodyEntered"]

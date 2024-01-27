@@ -28,6 +28,7 @@ script = ExtResource("3_o7h4i")
 position = Vector2(307, 131)
 scale = Vector2(1.41, 1.41)
 script = ExtResource("1_4x5f6")
+WeaponOffset = Vector2(30, 5)
 
 [node name="Sprite2D" type="Sprite2D" parent="player1"]
 position = Vector2(0, -1)
@@ -41,13 +42,12 @@ position = Vector2(1166, 253)
 scale = Vector2(1.4, 1.4)
 script = ExtResource("1_4x5f6")
 JumpVelocity = -800.0
-PlayerName = "p2"
 LeftControl = "p2-left"
 RightControl = "p2-right"
 JumpControl = "p2-jump"
 FastFallControl = "p2-fast-fall"
 ActionControl = "p2-action"
-DeathControl = "p2-death"
+WeaponOffset = Vector2(30, 5)
 
 [node name="Sprite2D" type="Sprite2D" parent="player2"]
 position = Vector2(-3.8147e-06, -6.67572e-06)
@@ -62,3 +62,4 @@ position = Vector2(700, 269)
 script = ExtResource("7_ufxl1")
 
 [node name="HUD" parent="." instance=ExtResource("8_nodnu")]
+visible = false
