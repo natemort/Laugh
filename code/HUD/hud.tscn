@@ -1,28 +1,24 @@
-[gd_scene load_steps=4 format=3 uid="uid://brlnubnrldbgt"]
+[gd_scene load_steps=3 format=3 uid="uid://brlnubnrldbgt"]
 
 [ext_resource type="Script" path="res://code/HUD/HUD.cs" id="1_gnndv"]
 [ext_resource type="Script" path="res://code/HUD/TimerLabel.cs" id="2_ttnsr"]
-[ext_resource type="FontFile" uid="uid://dxpn3we6wwjsu" path="res://font/Cinzel/static/Cinzel-Bold.ttf" id="2_y4vsv"]
 
 [node name="Node2D" type="Node2D"]
 
-[node name="HUD" type="CanvasLayer" parent="." groups=["HUD"]]
+[node name="HUD" type="CanvasLayer" parent="."]
 script = ExtResource("1_gnndv")
-
-[node name="NextWeaponPosition" type="Node2D" parent="HUD"]
 
 [node name="Player1HealthLabel" type="Label" parent="HUD"]
 anchors_preset = -1
-anchor_left = 0.139
-anchor_top = 0.064
-anchor_right = 0.142
+anchor_left = 0.121
+anchor_top = 0.072
+anchor_right = 0.121
 anchor_bottom = 0.072
-offset_left = -184.5
-offset_top = -40.0
-offset_right = -54.0
-offset_bottom = -4.0
-theme_override_fonts/font = ExtResource("2_y4vsv")
-theme_override_font_sizes/font_size = 30
+offset_left = -176.0
+offset_top = -48.0
+offset_right = -60.0
+offset_bottom = -16.0
+scale = Vector2(4, 4)
 text = "HaHaHa
 "
 vertical_alignment = 1
@@ -33,13 +29,12 @@ anchor_left = 0.875
 anchor_top = 0.079
 anchor_right = 0.875
 anchor_bottom = 0.079
-offset_left = 23.5
-offset_top = -51.25
-offset_right = 158.5
-offset_bottom = -3.25002
+offset_left = -183.0
+offset_top = -71.0
+offset_right = -97.0001
+offset_bottom = -23.0
 grow_horizontal = 0
-theme_override_fonts/font = ExtResource("2_y4vsv")
-theme_override_font_sizes/font_size = 30
+scale = Vector2(4, 4)
 text = "HaHaHa"
 horizontal_alignment = 2
 vertical_alignment = 1
@@ -50,15 +45,14 @@ anchor_left = 0.497
 anchor_top = 0.068
 anchor_right = 0.497
 anchor_bottom = 0.068
-offset_left = -41.5
-offset_top = -51.0
-offset_right = 50.5
-offset_bottom = -9.0
-theme_override_fonts/font = ExtResource("2_y4vsv")
-theme_override_font_sizes/font_size = 30
+offset_left = -102.0
+offset_top = -27.0
+offset_right = -59.0
+offset_bottom = -4.00001
+scale = Vector2(5, 5)
 text = "timer"
 script = ExtResource("2_ttnsr")
 
 [node name="Timer" type="Timer" parent="HUD/TimerLabel"]
-wait_time = 10.0
+wait_time = 15.0
 autostart = true
