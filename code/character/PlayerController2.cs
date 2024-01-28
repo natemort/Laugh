@@ -155,10 +155,10 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 
 		velocity = Gravity(velocity, delta);
 		velocity = JumpAndFastFall(velocity, delta);
-		GD.Print(PlayerName + " animation after jump/fastfall " + SelfSprite.Animation);
+		// GD.Print(PlayerName + " animation after jump/fastfall " + SelfSprite.Animation);
 		
 		velocity = DirectionalMovement(velocity, delta);
-		GD.Print(PlayerName + " animation after direciton " + SelfSprite.Animation);
+		// GD.Print(PlayerName + " animation after direciton " + SelfSprite.Animation);
 		velocity = Dash(velocity, delta);
 		
 		
@@ -177,8 +177,8 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	}
 	private Vector2 DirectionalMovement(Vector2 velocity, double delta)
 	{
-		GD.Print(this.PlayerName + " vel.X: " + velocity.X);
-		GD.Print(this.PlayerName + " ani: " + SelfSprite.Animation);
+		// GD.Print(this.PlayerName + " vel.X: " + velocity.X);
+		// GD.Print(this.PlayerName + " ani: " + SelfSprite.Animation);
 		if (Math.Abs(velocity.X) <= 30)
 		{
 			if (Input.IsActionPressed(FastFallControl) && IsOnFloor()) // duck
@@ -240,7 +240,7 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 			
 			if (IsOnFloor())
 			{
-				GD.Print("from " + SelfSprite.Animation + " to " + _animations[Animations.jump]);
+				// GD.Print("from " + SelfSprite.Animation + " to " + _animations[Animations.jump]);
 				SelfSprite.Play( _animations[Animations.jump]);
 				velocity.Y = JumpVelocity * (float)delta;
 			} 

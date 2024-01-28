@@ -13,6 +13,7 @@ public partial class Devil : AnimatedSprite2D
 	private PackedScene _arena;
 	private DevilState _state = DevilState.Prompting;
 	private AnimatedText _text;
+	private Color _originalColor;
 
 	public DevilState State
 	{
@@ -35,10 +36,15 @@ public partial class Devil : AnimatedSprite2D
 		_text = GetNode<AnimatedText>("DevilText");
 		_text.Speak("Tell me your best joke");
 		_arena = ResourceLoader.Load<PackedScene>(ArenaName);
+		_originalColor = SelfModulate;
 	}
 
 	public override void _Process(double delta)
 	{
+		if (State == DevilState.Responding)
+		{
+			SelfModulate = SelfModulate.Lerp(Colors.Red, .006f);
+		}
 		if (State == DevilState.RespondingDelay && (Time.GetTicksMsec() - _lastStateChange) > TextDelayMs)
 		{
 			_text.Speak("I'm disappointed");
@@ -69,6 +75,7 @@ public partial class Devil : AnimatedSprite2D
 	{
 		_text.Speak("That's it?");
 		Play("dead");
+		// SelfModulate.Lerp(Colors.Red, .01f);
 		State = DevilState.Responding;
 	}
 
