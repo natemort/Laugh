@@ -55,8 +55,8 @@ DeathControl = "p2-death"
 WeaponOffset = Vector2(30, 5)
 
 [node name="Sprite2D" type="Sprite2D" parent="player2"]
-position = Vector2(-3.8147e-06, -6.67572e-06)
-scale = Vector2(0.533333, 1.72)
+position = Vector2(-2.14577e-06, -6.67572e-06)
+scale = Vector2(0.666667, 1.72)
 texture = ExtResource("4_po54m")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player2"]
@@ -276,7 +276,7 @@ Events = Array[PackedScene]([ExtResource("9_nhk0m")])
 
 [node name="PlayerManager" type="Node2D" parent="." groups=["PlayerManager"]]
 script = ExtResource("8_tasl1")
-test = true
+Weapons = Array[PackedScene]([ExtResource("9_0dyv6"), ExtResource("10_koaa1"), ExtResource("11_7n211")])
 
 [node name="FireballPoints" type="CanvasLayer" parent="."]
 

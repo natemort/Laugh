@@ -34,6 +34,8 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	[Export] 
 	public float DashForce = 7500f;
 
+	[Export] public Color DeadColor = Colors.Red;
+
 	[Export] public PackedScene StartingWeapon;
 	private Vector2 _dashDirection = Vector2.Zero;
 	private bool _canDash = true;
@@ -65,7 +67,29 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	private Node2D _weapon;
 	private float _initialXScale;
 	private bool _isForward = true;
-	public bool AllowMovement = false;
+	public bool Freeze = false;
+
+	private bool _alive = true;
+	public bool Alive
+	{
+		get
+		{
+			return _alive;
+		}
+		set
+		{
+			if (!value)
+			{
+				GetNode<Sprite2D>("Sprite2D").Modulate = DeadColor;
+			}
+			else
+			{
+				GetNode<Sprite2D>("Sprite2D").Modulate = Colors.White;
+			}
+
+			_alive = value;
+		}
+	}
 
 	public override void _Ready()
 	{
@@ -91,7 +115,7 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 
 	public override void _Process(double delta)
 	{
-		if (AllowMovement) return;
+		if (Freeze) return;
 		if (Input.IsActionJustPressed(ActionControl) && this._weapon != null)
 		{
 			this._weapon.Call("Fire");
@@ -100,7 +124,7 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 
 	public override void _PhysicsProcess(double delta)
 	{
-		if (AllowMovement) return;
+		if (Freeze) return;
 		Vector2 velocity = Velocity; 
 		//GD.Print(this.PlayerName + " new iteration vel: " + velocity);
 		//GD.Print("delta = " + delta);
@@ -224,8 +248,12 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 
 	public void Kill()
 	{
-		Health--;
-		EmitSignal(SignalName.DeathSignal, this);
+		if (Alive)
+		{
+			Alive = false;
+			Health--;
+			EmitSignal(SignalName.DeathSignal, this);
+		}
 	}
 }
 

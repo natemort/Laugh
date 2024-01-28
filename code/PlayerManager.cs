@@ -16,9 +16,6 @@ public partial class PlayerManager : Node2D
 
 	[Export] public PackedScene[] Weapons;
 
-	[Export]
-	private bool test = false;
-
 	private NonRepeatingRandomSet<PackedScene> _weapons;
 	private float _currentPauseTimeMs;
 	private float _waitTimeMs = 1500;
@@ -41,16 +38,11 @@ public partial class PlayerManager : Node2D
 		foreach (var player in _players)
 		{
 			player.DeathSignal += OnPlayerDeath;
-			if (test)
-			{
-				TestRespawn();
-			}
-			else
-			{
-				int index = Random.Shared.Next() % spawnPoints.Count;
-				Node2D n = (Node2D)spawnPoints[index];
-				player.Position = n.Position;
-			}
+
+			int index = Random.Shared.Next() % spawnPoints.Count;
+			Node2D n = (Node2D)spawnPoints[index];
+			player.Position = n.Position;
+			
 		}
 
 		_weapons = new NonRepeatingRandomSet<PackedScene>(Weapons);
@@ -110,7 +102,7 @@ public partial class PlayerManager : Node2D
 		foreach (PlayerController2 player in _players)
 		{
 			GD.Print("disable player: " + player.PlayerName);
-			player.AllowMovement = true;
+			player.Freeze = true;
 		}
 		_currentPauseTimeMs = Time.GetTicksMsec();
 		_respawnState = RespawnState.death;
@@ -122,7 +114,7 @@ public partial class PlayerManager : Node2D
 		foreach (PlayerController2 player in _players)
 		{
 			GD.Print("reenable player: " + player.PlayerName);
-			player.AllowMovement = false;
+			player.Freeze = false;
 		}
 
 		_respawnState = RespawnState.none;
@@ -130,40 +122,25 @@ public partial class PlayerManager : Node2D
 
 	private void Respawn()
 	{
-		if (test)
-		{
-			TestRespawn();
-		}
-		else
-		{
-			HashSet<int> s = new HashSet<int>();
-			foreach (PlayerController2 player in _players)
-			{
-				int index = Random.Shared.Next() % spawnPoints.Count;
-				while (s.Contains(index))
-				{
-					index = Random.Shared.Next() % spawnPoints.Count;
-				}
 
-				s.Add(index);
-				Node2D n = (Node2D)spawnPoints[index];
-				player.Position = n.Position;
+		HashSet<int> s = new HashSet<int>();
+		foreach (PlayerController2 player in _players)
+		{
+			int index = Random.Shared.Next() % spawnPoints.Count;
+			while (s.Contains(index))
+			{
+				index = Random.Shared.Next() % spawnPoints.Count;
 			}
+
+			s.Add(index);
+			Node2D n = (Node2D)spawnPoints[index];
+			player.Position = n.Position;
+			player.Alive = true;
 		}
+		
 		// delay again
 		_currentPauseTimeMs = Time.GetTicksMsec();
 		_respawnState = RespawnState.preSpawn;
-	}
-
-	private void TestRespawn()
-	{
-		int i = 8;
-		foreach (PlayerController2 player in _players)
-		{
-			Node2D n = (Node2D)spawnPoints[i];
-			player.Position = n.Position;
-			i++;
-		}
 	}
 
 	public void SwapWeapons()
