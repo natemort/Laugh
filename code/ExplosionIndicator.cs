@@ -16,8 +16,8 @@ public partial class ExplosionIndicator : Node2D
 		_startTime = Time.GetTicksMsec();
 		_indicator = GetNode<AnimatedSprite2D>("Indicator");
 		_explosion = GetNode<AnimatedSprite2D>("Explosion");
-		_killZone = GetNode<Sprite2D>("Hitbox");
-		_killZone.SetProcess(false);
+		_killZone = GetNode<Area2D>("Hitbox");
+		_killZone.GetChild<CollisionShape2D>(0).SetDeferred("disabled", true);
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,7 +28,7 @@ public partial class ExplosionIndicator : Node2D
 			_indicator.Visible = false;
 			_explosion.Visible = true;
 			_explosion.Play();
-			_killZone.SetProcess(true);
+			_killZone.GetChild<CollisionShape2D>(0).SetDeferred("disabled", false);
 		}
 	}
 

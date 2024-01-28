@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Linq;
+using Godot;
 
 namespace Laugh.code;
 
@@ -24,9 +26,12 @@ public class NonRepeatingRandomSet<T>
         return _upcoming[_index++];
     }
     
-    private static void Shuffle(IList<T> list)  
-    {  
-        for (int n = list.Count; n > 1; n--) {
+    private static void Shuffle(IList<T> list)
+    {
+        int n = list.Count;
+        while (n > 1)
+        {
+            n--;
             int k = Random.Shared.Next(n + 1);  
             (list[k], list[n]) = (list[n], list[k]);
         }  

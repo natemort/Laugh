@@ -34,7 +34,7 @@ public partial class EventManager : Node2D
 		{
 			_currentEvent = _CreateEvent();
 			GD.Print("Started event: " + _currentEvent.Name);
-			AddChild(_CreateEvent());
+			AddChild(_currentEvent);
 		}
 	}
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://c2o47rt8ni8rd"]
+[gd_scene load_steps=9 format=3 uid="uid://c2o47rt8ni8rd"]
 
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_w2o0g"]
 [ext_resource type="Script" path="res://code/character/PlayerController2.cs" id="2_uklay"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://b36y0henuau88" path="res://kenney_abstract-platformer/PNG/Enemies/enemyFlying_4.png" id="4_po54m"]
 [ext_resource type="Script" path="res://code/character/ArenaCamera.cs" id="5_eud4v"]
 [ext_resource type="PackedScene" uid="uid://brlnubnrldbgt" path="res://code/HUD/hud.tscn" id="6_s8n7k"]
+[ext_resource type="Script" path="res://code/event/EventManager.cs" id="7_t65qn"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhdka"]
 radius = 18.6011
@@ -44,8 +45,6 @@ JumpControl = "p2-jump"
 FastFallControl = "p2-fast-fall"
 ActionControl = "p2-action"
 DeathControl = "p2-death"
-DashControl = "p2-dash"
-DashForce = 5000.0
 WeaponOffset = Vector2(30, 5)
 
 [node name="Sprite2D" type="Sprite2D" parent="player2"]
@@ -64,6 +63,7 @@ Targets = [NodePath("../player1"), NodePath("../player2")]
 [node name="HUD" parent="." instance=ExtResource("6_s8n7k")]
 
 [node name="SpawnPoints" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="location" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
 position = Vector2(-990, -690)
@@ -193,3 +193,77 @@ position = Vector2(-1863, 271)
 
 [node name="location43" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
 position = Vector2(-684, 279)
+
+[node name="ExplosionSpawnPoints" type="CanvasLayer" parent="."]
+
+[node name="ExplosionSpawnPoint1" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(2559, 87)
+
+[node name="ExplosionSpawnPoint2" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(-280, 20)
+
+[node name="ExplosionSpawnPoint3" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(1281, 275)
+
+[node name="ExplosionSpawnPoint4" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(961, -219)
+
+[node name="ExplosionSpawnPoint5" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(1614, -495)
+
+[node name="ExplosionSpawnPoint6" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(1217, -862)
+
+[node name="ExplosionSpawnPoint7" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(2394, -559)
+
+[node name="ExplosionSpawnPoint8" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(1678, -1060)
+
+[node name="ExplosionSpawnPoint9" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(-31, -216)
+
+[node name="ExplosionSpawnPoint10" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(-744, 279)
+
+[node name="ExplosionSpawnPoint11" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(-1039, -1049)
+
+[node name="ExplosionSpawnPoint12" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(-1564, -698)
+
+[node name="ExplosionSpawnPoint13" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(-2323, -875)
+
+[node name="ExplosionSpawnPoint14" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(-220, -966)
+
+[node name="ExplosionSpawnPoint15" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(-1768, -237)
+
+[node name="ExplosionSpawnPoint16" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(-2066, 193)
+
+[node name="ExplosionSpawnPoint17" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(369, -664)
+
+[node name="ExplosionSpawnPoint18" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(449, -1147)
+
+[node name="ExplosionSpawnPoint19" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(2450, -1253)
+
+[node name="ExplosionSpawnPoint20" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(2827, -551)
+
+[node name="ExplosionSpawnPoint21" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(-337, -490)
+
+[node name="ExplosionSpawnPoint22" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
+position = Vector2(-1345, -45)
+
+[node name="EventManager" type="Node2D" parent="."]
+script = ExtResource("7_t65qn")
+Events = PackedStringArray("res://prototype/explosion_event.tscn")
+
+[connection signal="child_exiting_tree" from="EventManager" to="EventManager" method="OnChildExiting"]
