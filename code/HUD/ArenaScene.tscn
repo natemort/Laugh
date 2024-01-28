@@ -263,12 +263,13 @@ position = Vector2(-337, -490)
 [node name="ExplosionSpawnPoint22" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
 position = Vector2(-1345, -45)
 
-[node name="EventManager" type="Node2D" parent="."]
+[node name="EventManager" type="Node2D" parent="." groups=["EventManager"]]
 script = ExtResource("7_t65qn")
 Events = PackedStringArray("res://prototype/explosion_event.tscn")
 
-[node name="PlayerManager" type="Node2D" parent="."]
+[node name="PlayerManager" type="Node2D" parent="." groups=["PlayerManager"]]
 script = ExtResource("8_tasl1")
+Weapons = PackedStringArray("res://prototype/revolver.tscn", "res://prototype/sword.tscn")
 
 [connection signal="child_exiting_tree" from="EventManager" to="EventManager" method="OnChildExiting"]
 [connection signal="RoundStart" from="PlayerManager" to="EventManager" method="ResetEvents"]

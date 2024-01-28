@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Laugh.code;
 
 public partial class PlayerManager : Node2D
 {
@@ -10,9 +11,15 @@ public partial class PlayerManager : Node2D
 	[Signal]
 	public delegate void RoundStartEventHandler();
 
+	[Signal]
+	public delegate void RoundEndEventHandler();
+
+	[Export] public String[] Weapons;
+
 	[Export]
 	private bool test = false;
-	
+
+	private NonRepeatingRandomSet<String> _weapons;
 	private float _currentPauseTimeMs;
 	private float _waitTimeMs = 1500;
 	private RespawnState _respawnState = RespawnState.none;
@@ -44,6 +51,9 @@ public partial class PlayerManager : Node2D
 				player.Position = n.Position;
 			}
 		}
+
+		_weapons = new NonRepeatingRandomSet<string>(Weapons);
+		SwapWeapons();
 	}
 
 	public override void _Process(double delta)
@@ -54,6 +64,7 @@ public partial class PlayerManager : Node2D
 		{
 			// now respawn them
 			Respawn();
+			SwapWeapons();
 		} else if (_respawnState == RespawnState.preSpawn && Time.GetTicksMsec() - _currentPauseTimeMs >= _waitTimeMs)
 		{
 			EmitSignal(SignalName.RoundStart);
@@ -102,6 +113,7 @@ public partial class PlayerManager : Node2D
 		}
 		_currentPauseTimeMs = Time.GetTicksMsec();
 		_respawnState = RespawnState.death;
+		EmitSignal(SignalName.RoundEnd);
 	}
 
 	private void ResumePlayerProcessing()
@@ -150,6 +162,16 @@ public partial class PlayerManager : Node2D
 			Node2D n = (Node2D)spawnPoints[i];
 			player.Position = n.Position;
 			i++;
+		}
+	}
+
+	public void SwapWeapons()
+	{
+		String weapon = _weapons.GetRandom();
+		PackedScene weaponPacked = ResourceLoader.Load<PackedScene>(weapon);
+		foreach (PlayerController2 player in _players)
+		{
+			player.SetWeapon(weaponPacked.Instantiate<Node2D>());
 		}
 	}
 }

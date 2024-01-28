@@ -1,7 +1,5 @@
 using Godot;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using Laugh.code;
 
 public partial class EventManager : Node2D

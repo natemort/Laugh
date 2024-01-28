@@ -7,7 +7,7 @@ public partial class ExplosionIndicator : Node2D
 
 	private AnimatedSprite2D _indicator;
 	private AnimatedSprite2D _explosion;
-	private Node2D _killZone;
+	private KillArea _killZone;
 	private float _startTime;
 
 	// Called when the node enters the scene tree for the first time.
@@ -16,8 +16,8 @@ public partial class ExplosionIndicator : Node2D
 		_startTime = Time.GetTicksMsec();
 		_indicator = GetNode<AnimatedSprite2D>("Indicator");
 		_explosion = GetNode<AnimatedSprite2D>("Explosion");
-		_killZone = GetNode<Area2D>("Hitbox");
-		_killZone.GetChild<CollisionShape2D>(0).SetDeferred("disabled", true);
+		_killZone = GetNode<KillArea>("Hitbox");
+		_killZone.Disabled = true;
 	}
 
 	// Called every frame. 'delta' is the elapsed time since the previous frame.
@@ -28,7 +28,7 @@ public partial class ExplosionIndicator : Node2D
 			_indicator.Visible = false;
 			_explosion.Visible = true;
 			_explosion.Play();
-			_killZone.GetChild<CollisionShape2D>(0).SetDeferred("disabled", false);
+			_killZone.Disabled = false;
 		}
 	}
 

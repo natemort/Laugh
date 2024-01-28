@@ -11,7 +11,7 @@ public partial class Sword : Node2D, Weapon
 	[Export] public float SlashRotationDegrees = 70;
 	private Sprite2D _slashEffect;
 	private Sprite2D _swordSprite;
-	private Area2D _hitbox;
+	private KillArea _hitbox;
 	private Node2D _rotationPoint;
 	private Vector2 _startPoint;
 	private SwordState _state;
@@ -20,10 +20,10 @@ public partial class Sword : Node2D, Weapon
 	{
 		_slashEffect = GetNode<Sprite2D>("SlashEffect");
 		_swordSprite = GetNode<Sprite2D>("SwordSprite");
-		_hitbox = GetNode<Area2D>("Hitbox");
+		_hitbox = GetNode<KillArea>("Hitbox");
 		_rotationPoint = GetNode<Node2D>("RotationPoint");
-		
-		_hitbox.SetProcess(false);
+
+		_hitbox.Disabled = true;
 		_slashEffect.Visible = false;
 		_startPoint = _swordSprite.Position;
 	}
@@ -34,6 +34,7 @@ public partial class Sword : Node2D, Weapon
 		{
 			_state = SwordState.Recovering;
 			_stateChangeTime = Time.GetTicksMsec();
+			_hitbox.Disabled = true;
 			_hitbox.SetProcess(false);
 			_slashEffect.Visible = false;
 		} else if (_state == SwordState.Recovering && (Time.GetTicksMsec() - _stateChangeTime) >= RecoverTimeMs)
@@ -41,7 +42,6 @@ public partial class Sword : Node2D, Weapon
 			_state = SwordState.Ready;
 			_stateChangeTime = Time.GetTicksMsec();
 			_swordSprite.RotationDegrees = 0;
-			GD.Print("start: " + _startPoint);
 			_swordSprite.Position = _startPoint;
 		}
 	}
@@ -52,13 +52,11 @@ public partial class Sword : Node2D, Weapon
 		{
 			_state = SwordState.Attacking;
 			_stateChangeTime = Time.GetTicksMsec();
-			_hitbox.SetProcess(true);
+			_hitbox.Disabled = false;
 			_slashEffect.Visible = true;
-			GD.Print("Start position: " + _swordSprite.GlobalPosition);
 			_swordSprite.Position = _rotationPoint.Position;
 			_swordSprite.RotationDegrees = SlashRotationDegrees;
 			// 60, 280
-			GD.Print("End Position: " + _swordSprite.GlobalPosition);
 		}
 		
 	}

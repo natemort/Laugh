@@ -72,7 +72,6 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 		DashForce *= frames;
 		FastFallVelocity *= frames;
 		
-		SetWeapon(ResourceLoader.Load<PackedScene>("res://prototype/revolver.tscn").Instantiate<Gun>());
 		_initialXScale = this.Scale.X;
 	}
 
