@@ -54,5 +54,5 @@ text = "timer"
 script = ExtResource("2_ttnsr")
 
 [node name="Timer" type="Timer" parent="HUD/TimerLabel"]
-wait_time = 15.0
+wait_time = 10.0
 autostart = true

@@ -52,7 +52,7 @@ radius = 139.703
 
 [node name="ExplosionIndicator" type="Node2D"]
 script = ExtResource("1_en173")
-ExplosionDelayMs = 3000.0
+ExplosionDelayMs = 2000.0
 
 [node name="Indicator" type="AnimatedSprite2D" parent="."]
 sprite_frames = SubResource("SpriteFrames_fe6pl")

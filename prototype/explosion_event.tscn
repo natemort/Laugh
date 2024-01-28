@@ -4,6 +4,8 @@
 
 [node name="ExplosionEvent" type="Node2D"]
 script = ExtResource("1_a4r83")
+MinExplosionCount = 10
+MaxExplosionCount = 20
 ToSpawn = "res://prototype/explosion.tscn"
 
 [connection signal="child_exiting_tree" from="." to="." method="OnChildExiting"]

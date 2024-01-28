@@ -1,7 +1,9 @@
-[gd_scene load_steps=11 format=3 uid="uid://c2o47rt8ni8rd"]
+[gd_scene load_steps=13 format=3 uid="uid://c2o47rt8ni8rd"]
 
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_w2o0g"]
 [ext_resource type="Script" path="res://code/character/ArenaCamera.cs" id="5_eud4v"]
+[ext_resource type="PackedScene" uid="uid://corpmn72aly6k" path="res://prototype/explosion_event.tscn" id="5_hreow"]
+[ext_resource type="PackedScene" uid="uid://bwcyogubqj703" path="res://prototype/fireball_player_target_event.tscn" id="6_j8di2"]
 [ext_resource type="PackedScene" uid="uid://brlnubnrldbgt" path="res://code/HUD/hud.tscn" id="6_s8n7k"]
 [ext_resource type="Script" path="res://code/event/EventManager.cs" id="7_t65qn"]
 [ext_resource type="Script" path="res://code/PlayerManager.cs" id="8_tasl1"]
@@ -230,9 +232,9 @@ position = Vector2(-1345, -45)
 
 [node name="EventManager" type="Node2D" parent="." groups=["EventManager"]]
 script = ExtResource("7_t65qn")
-Events = Array[PackedScene]([])
-EventDelayMinMs = 200000
-EventDelayMaxMs = 100000000
+Events = Array[PackedScene]([ExtResource("5_hreow"), ExtResource("6_j8di2")])
+EventDelayMinMs = 5000
+EventDelayMaxMs = 30000
 
 [node name="PlayerManager" type="Node2D" parent="." groups=["PlayerManager"]]
 script = ExtResource("8_tasl1")
