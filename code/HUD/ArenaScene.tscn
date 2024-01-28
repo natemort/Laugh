@@ -44,6 +44,8 @@ JumpControl = "p2-jump"
 FastFallControl = "p2-fast-fall"
 ActionControl = "p2-action"
 DeathControl = "p2-death"
+DashControl = "p2-dash"
+DashForce = 5000.0
 WeaponOffset = Vector2(30, 5)
 
 [node name="Sprite2D" type="Sprite2D" parent="player2"]

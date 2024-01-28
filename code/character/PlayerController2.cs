@@ -28,6 +28,15 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	public String ActionControl = "p1-action";
 	[Export] 
 	public String DeathControl = "p1-death";
+	[Export] 
+	public String DashControl = "p1-dash";
+	[Export] 
+	public float DashForce = 5000f;
+	private Vector2 _dashDirection = Vector2.Zero;
+	private bool _canDash = true;
+	private bool _dashing = false;
+	private float _dashCooldownMs = 1000f;
+	private float _lastDashMs = 0f;
 
 	[Export] public Vector2 WeaponOffset = Vector2.Zero;
 
@@ -117,8 +126,22 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 
 		// Get the input direction and handle the movement/deceleration.
 		// As good practice, you should replace UI actions with custom gameplay actions.
-		velocity.X = Speed * Input.GetAxis(LeftControl, RightControl);
-
+		
+		// velocity.X = Speed * Input.GetAxis(LeftControl, RightControl);
+		if (Input.IsActionPressed(LeftControl) && velocity.X >= Speed * Vector2.Left.X)
+		{
+			velocity.X = Speed * Vector2.Left.X;
+			_dashDirection = Vector2.Left;
+		} else if (Input.IsActionPressed(RightControl) && velocity.X <= Speed * Vector2.Right.X)
+		{
+			velocity.X = Speed * Vector2.Right.X;
+			_dashDirection = Vector2.Right;
+		}else
+		{
+			// smooth stop
+			velocity.X = velocity.Lerp(Vector2.One, 0.25f).X;
+		}
+		
 		if ((_isForward && velocity.X < 0) || (!_isForward && velocity.X > 0) )
 		{
 			_isForward = !_isForward;
@@ -127,9 +150,33 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 				X = -_initialXScale
 			};
 		}
-
+		
+		velocity = Dash(velocity);
 		this.Velocity = velocity;
 		MoveAndSlide();
+	}
+
+	public Vector2 Dash(Vector2 velocity)
+	{
+		if (Input.IsActionJustPressed(DashControl) && _canDash)
+		{
+			// do animation?
+			GD.Print("dashing");
+			velocity = _dashDirection.Normalized() * DashForce;
+			_canDash = false;
+			_dashing = true;
+			_lastDashMs = Time.GetTicksMsec();
+			GD.Print(velocity);
+		}
+		GD.Print(velocity);
+		// dash cooldown reset?
+		if (!_canDash && (Time.GetTicksMsec() - _lastDashMs) > _dashCooldownMs)
+		{
+			GD.Print("can dash again");
+			_canDash = true;
+		}
+
+		return velocity;
 	}
 
 	public void Kill()
