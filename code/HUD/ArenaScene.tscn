@@ -204,6 +204,7 @@ position = Vector2(-1863, 271)
 position = Vector2(-684, 279)
 
 [node name="ExplosionSpawnPoints" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="ExplosionSpawnPoint1" type="Node2D" parent="ExplosionSpawnPoints" groups=["ExplosionSpawnPoints"]]
 position = Vector2(2559, 87)

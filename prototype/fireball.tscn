@@ -1,0 +1,69 @@
+[gd_scene load_steps=11 format=3 uid="uid://0twgo0x35plo"]
+
+[ext_resource type="Texture2D" uid="uid://bhjs2kleu0klh" path="res://kenney_pixel-shmup/Tiles/USEME.png" id="1_st6hc"]
+[ext_resource type="Texture2D" uid="uid://dhyvxnp4gknjc" path="res://kenney_pixel-shmup/Tiles/tile_0003.png" id="2_lbwt4"]
+[ext_resource type="Texture2D" uid="uid://bbuy0o6a7e35a" path="res://kenney_pixel-shmup/Tiles/useme3.png" id="3_a32ry"]
+[ext_resource type="Texture2D" uid="uid://dl2wkpufirouf" path="res://kenney_pixel-shmup/Tiles/useme4.png" id="4_wixy0"]
+[ext_resource type="Texture2D" uid="uid://cnripi7dbwa3u" path="res://kenney_pixel-shmup/Tiles/useme5.png" id="5_xay6w"]
+[ext_resource type="Script" path="res://prototype/FireballArea.cs" id="6_g2q1o"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_am530"]
+size = Vector2(8.6875, 17.5)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4spfu"]
+load_path = "res://.godot/imported/tile_0005.png-8f244290ca920f870103c22e2e343e68.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1bpag"]
+load_path = "res://.godot/imported/tile_0006.png-1b341376470b916e0aa7908f38b7911c.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_6m8q0"]
+animations = [{
+"frames": [{
+"duration": 3.2,
+"texture": SubResource("CompressedTexture2D_4spfu")
+}, {
+"duration": 4.61,
+"texture": SubResource("CompressedTexture2D_1bpag")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 3.69,
+"texture": ExtResource("1_st6hc")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lbwt4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_a32ry")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_wixy0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_xay6w")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 5.0
+}]
+
+[node name="Fireball" type="Node2D"]
+position = Vector2(92, 56)
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(0, 1)
+scale = Vector2(1, 1.4375)
+script = ExtResource("6_g2q1o")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -0.52174)
+scale = Vector2(1, 0.695652)
+shape = SubResource("RectangleShape2D_am530")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+sprite_frames = SubResource("SpriteFrames_6m8q0")
+animation = &"new_animation"
+frame_progress = 0.207302

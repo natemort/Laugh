@@ -1,9 +1,10 @@
-[gd_scene load_steps=8 format=3 uid="uid://cd6sros7a4wn1"]
+[gd_scene load_steps=9 format=3 uid="uid://cd6sros7a4wn1"]
 
 [ext_resource type="Script" path="res://code/character/PlayerController2.cs" id="1_4x5f6"]
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_cbcgy"]
 [ext_resource type="Texture2D" uid="uid://b3oaagq3y8iru" path="res://kenney_abstract-platformer/PNG/Enemies/enemyWalking_1.png" id="2_slcq6"]
 [ext_resource type="Texture2D" uid="uid://b36y0henuau88" path="res://kenney_abstract-platformer/PNG/Enemies/enemyFlying_4.png" id="3_2ecdk"]
+[ext_resource type="Script" path="res://code/event/EventManager.cs" id="7_m7prp"]
 [ext_resource type="Script" path="res://code/character/ArenaCamera.cs" id="7_ufxl1"]
 [ext_resource type="PackedScene" uid="uid://brlnubnrldbgt" path="res://code/HUD/hud.tscn" id="8_nodnu"]
 
@@ -20,7 +21,7 @@ format = 2
 layer_0/name = "MapLayer"
 layer_0/tile_data = PackedInt32Array(65536, 262145, 0, 131072, 65537, 0, 131073, 131073, 0, 131074, 131073, 0, 131075, 131073, 0, 131076, 131073, 0, 131077, 196609, 0, 65541, 262145, 0, 6, 262145, 0, -65528, 196609, 0, -65529, 65537, 0, 131069, 262145, 0, 393214, 262145, 0, 327681, 262145, 0, 327682, 262145, 0, 327683, 262145, 0, 327684, 262145, 0, 327685, 262145, 0, 327686, 262145, 0, 327687, 262145, 0, 262151, 262145, 0, 262152, 262145, 0, 262153, 262145, 0, 196617, 262145, 0, -327671, 262145, 0, -327672, 262145, 0, -327673, 262145, 0, -327674, 262145, 0, -393211, 262145, 0, -393212, 262145, 0, -393213, 262145, 0, -393214, 262145, 0, -393215, 262145, 0, -327680, 262145, 0, -262145, 262145, 0, -262146, 262145, 0, -262147, 262145, 0, 65546, 262145, 0, 65547, 262145, 0, -65525, 262145, 0, -65524, 262145, 0, -327670, 262145, 0, -327669, 262145, 0, -327668, 262145, 0, -327667, 262145, 0, -327666, 262145, 0, -327665, 262145, 0, -262129, 262145, 0, -262128, 262145, 0, -196592, 262145, 0, -196591, 262145, 0, -262148, 262145, 0, -262149, 262145, 0, -196613, 262145, 0, -196614, 262145, 0, -196615, 262145, 0, -131079, 262145, 0, -131080, 262145, 0, -131081, 262145, 0, -65545, 262145, 0, -65546, 262145, 0, -11, 262145, 0, 65524, 262145, 0, 131060, 262145, 0, 131059, 262145, 0, 196595, 262145, 0, 262131, 262145, 0, 327667, 262145, 0, 393202, 262145, 0, 458739, 262145, 0, 524275, 262145, 0, 524276, 262145, 0, 524277, 262145, 0, 524278, 262145, 0, 524279, 262145, 0, 524280, 262145, 0, 524281, 262145, 0, 458746, 262145, 0, 524282, 262145, 0, 589819, 262145, 0, 589820, 262145, 0, 589821, 262145, 0, 589822, 262145, 0, 589823, 262145, 0, 524288, 262145, 0, 524289, 262145, 0, 524290, 262145, 0, 589826, 262145, 0, 589827, 262145, 0, 589828, 262145, 0, 589829, 262145, 0, 589830, 262145, 0, 589831, 262145, 0, 524295, 262145, 0, 524296, 262145, 0, 524297, 262145, 0, 524298, 262145, 0, 524299, 262145, 0, 524300, 262145, 0, 524301, 262145, 0, 524302, 262145, 0, 589832, 262145, 0, 524293, 262145, 0, 524292, 262145, 0, 524291, 262145, 0, 524294, 262145, 0, 393204, 262145, 0, 458747, 262145, 0, 393209, 262145, 0, 327672, 262145, 0, 393210, 262145, 0, 327671, 262145, 0, -131068, 524289, 0, -65535, 524289, 0, 131065, 524289, 0, 131066, 524289, 0, -4, 524289, 0, -131074, 524289, 0, -131073, 524289, 0, -196608, 524289, 0, 131086, 524289, 0, 327693, 524289, 0, 393227, 524289, 0, 196619, 524289, 0, 458767, 196609, 1, 393233, 196609, 1, 327699, 196609, 1, 524303, 131073, 0, 524304, 131073, 0, 458768, 131073, 0, 458769, 131073, 0, 458770, 131073, 0, 393234, 131073, 0, 393235, 131073, 0, 393236, 131073, 0, 327700, 131073, 0, 262165, 131073, 0, 327701, 131073, 0, 196626, 131073, 0, 196625, 131073, 0, 196624, 131073, 0, 196630, 131073, 0, 131094, 131073, 0, 65558, 131073, 0, 22, 131073, 0, -65514, 131073, 0, -131050, 131073, 0, -196586, 131073, 0, -196587, 131073, 0, -196588, 131073, 0, -196589, 131073, 0, -196590, 131073, 0, 20, 131073, 0, 17, 131073, 0, -196599, 131073, 0)
 
-[node name="player1" type="CharacterBody2D" parent="."]
+[node name="player1" type="CharacterBody2D" parent="." groups=["PlayerGroup"]]
 position = Vector2(307, 131)
 scale = Vector2(1.41, 1.41)
 script = ExtResource("1_4x5f6")
@@ -33,7 +34,7 @@ texture = ExtResource("2_slcq6")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player1"]
 shape = SubResource("CircleShape2D_bh4i0")
 
-[node name="player2" type="CharacterBody2D" parent="."]
+[node name="player2" type="CharacterBody2D" parent="." groups=["PlayerGroup"]]
 position = Vector2(1166, 253)
 scale = Vector2(1.4, 1.4)
 script = ExtResource("1_4x5f6")
@@ -60,3 +61,65 @@ position = Vector2(700, 269)
 script = ExtResource("7_ufxl1")
 
 [node name="HUD" parent="." instance=ExtResource("8_nodnu")]
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Node2D3" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(64, -390)
+
+[node name="Node2D4" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(217, -549)
+
+[node name="Node2D2" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(-275, -152)
+
+[node name="Node2D" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(-122, -311)
+
+[node name="Node2D5" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(-634, 178)
+
+[node name="Node2D6" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(-481, 19)
+
+[node name="Node2D7" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(-510, 570)
+
+[node name="Node2D8" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(-607, 323)
+
+[node name="Node2D9" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(2703, 70)
+
+[node name="Node2D10" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(2640, -135)
+
+[node name="Node2D11" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(2634, 428)
+
+[node name="Node2D12" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(2730, 215)
+
+[node name="Node2D13" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(2491, -425)
+
+[node name="Node2D14" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(2325, -543)
+
+[node name="Node2D15" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+position = Vector2(2518, -280)
+
+[node name="Node2D9" type="Node2D" parent="." groups=["FireballSpawnPoints"]]
+position = Vector2(1429, -734)
+
+[node name="Node2D10" type="Node2D" parent="." groups=["FireballSpawnPoints"]]
+position = Vector2(1366, -939)
+
+[node name="Node2D12" type="Node2D" parent="." groups=["FireballSpawnPoints"]]
+position = Vector2(1586, -612)
+
+[node name="EventManager" type="Node2D" parent="."]
+script = ExtResource("7_m7prp")
+Events = PackedStringArray("res://prototype/explosion_event.tscn")
+
+[connection signal="child_exiting_tree" from="EventManager" to="EventManager" method="OnChildExiting"]

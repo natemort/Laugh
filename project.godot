@@ -11,9 +11,13 @@ config_version=5
 [application]
 
 config/name="Laugh"
-run/main_scene="res://code/HUD/ArenaScene.tscn"
+run/main_scene="res://code/character/joe_scene.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
+
+[autoload]
+
+PlayerManager="*res://code/PlayerManager.cs"
 
 [display]
 
