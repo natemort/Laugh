@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://c2o47rt8ni8rd"]
+[gd_scene load_steps=10 format=3 uid="uid://c2o47rt8ni8rd"]
 
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_w2o0g"]
 [ext_resource type="Script" path="res://code/character/PlayerController2.cs" id="2_uklay"]
@@ -7,6 +7,7 @@
 [ext_resource type="Script" path="res://code/character/ArenaCamera.cs" id="5_eud4v"]
 [ext_resource type="PackedScene" uid="uid://brlnubnrldbgt" path="res://code/HUD/hud.tscn" id="6_s8n7k"]
 [ext_resource type="Script" path="res://code/event/EventManager.cs" id="7_t65qn"]
+[ext_resource type="Script" path="res://code/PlayerManager.cs" id="8_tasl1"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhdka"]
 radius = 18.6011
@@ -266,4 +267,8 @@ position = Vector2(-1345, -45)
 script = ExtResource("7_t65qn")
 Events = PackedStringArray("res://prototype/explosion_event.tscn")
 
+[node name="PlayerManager" type="Node2D" parent="."]
+script = ExtResource("8_tasl1")
+
 [connection signal="child_exiting_tree" from="EventManager" to="EventManager" method="OnChildExiting"]
+[connection signal="RoundStart" from="PlayerManager" to="EventManager" method="ResetEvents"]

@@ -38,6 +38,12 @@ public partial class EventManager : Node2D
 		}
 	}
 
+	public void ResetEvents()
+	{
+		StopEvents();
+		ResumeEvents();
+	}
+
 	public void ResumeEvents()
 	{
 		GD.Print("Resuming Events");

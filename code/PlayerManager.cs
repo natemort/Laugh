@@ -7,6 +7,8 @@ public partial class PlayerManager : Node2D
 	private List<PlayerController2> _players;
 	// Called when the node enters the scene tree for the first time.
 	private Godot.Collections.Array<Node> spawnPoints;
+	[Signal]
+	public delegate void RoundStartEventHandler();
 
 	[Export]
 	private bool test = false;
@@ -54,6 +56,7 @@ public partial class PlayerManager : Node2D
 			Respawn();
 		} else if (_respawnState == RespawnState.preSpawn && Time.GetTicksMsec() - _currentPauseTimeMs >= _waitTimeMs)
 		{
+			EmitSignal(SignalName.RoundStart);
 			ResumePlayerProcessing();
 		}
 	}
