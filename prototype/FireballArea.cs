@@ -50,8 +50,10 @@ public partial class FireballArea : Area2D
 	
 	public void OnBodyEntered(Node2D node)
 	{
+		GD.Print("node entered ball: " + node.Position);
 		if (node is Killable k)
 		{
+			GD.Print("killable");
 			k.Kill();
 		}
 	}

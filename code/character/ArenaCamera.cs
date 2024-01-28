@@ -23,7 +23,7 @@ public partial class ArenaCamera : Camera2D
 		ScreenSize = this.GetViewportRect().Size;
 		foreach (Node2D n in Targets)
 		{
-			_targets.Add(n);
+			addTarget(n);
 		}
 	}
 
@@ -68,6 +68,7 @@ public partial class ArenaCamera : Camera2D
 
 	public void addTarget(Node2D node)
 	{
+		GD.Print("camera added: " + node.Position);
 		_targets.Add(node);
 	}
 
