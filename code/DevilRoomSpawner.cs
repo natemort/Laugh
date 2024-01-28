@@ -1,6 +1,5 @@
 using Godot;
 using System;
-using System.Collections.Generic;
 using Laugh.code;
 
 public partial class DevilRoomSpawner : Node2D
