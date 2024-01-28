@@ -5,9 +5,11 @@ public partial class Devil : AnimatedSprite2D
 {
 
 	[Export] public float TextDelayMs = 3000;
+	[Export] public String ArenaName = "res://code/HUD/ArenaScene.tscn";
 	[Signal]
 	public delegate void DevilStateChangeEventHandler(DevilState state);
-	
+
+	private PackedScene _arena;
 	private DevilState _state = DevilState.Prompting;
 	private AnimatedText _text;
 
@@ -31,6 +33,7 @@ public partial class Devil : AnimatedSprite2D
 	{
 		_text = GetNode<AnimatedText>("DevilText");
 		_text.Speak("Tell me your best joke");
+		_arena = ResourceLoader.Load<PackedScene>(ArenaName);
 	}
 
 	public override void _Process(double delta)
@@ -42,7 +45,11 @@ public partial class Devil : AnimatedSprite2D
 			State = DevilState.Responding2;
 		} else if (State == DevilState.Finished && (Time.GetTicksMsec() - _lastStateChange) > TextDelayMs)
 		{
-			// Send back to game
+			// Reset Game
+			GetTree().CurrentScene.QueueFree();
+			var newScene = _arena.Instantiate<Node2D>();
+			GetTree().Root.AddChild(newScene);
+			GetTree().CurrentScene = newScene;
 		}
 	}
 

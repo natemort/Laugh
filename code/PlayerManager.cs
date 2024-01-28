@@ -18,6 +18,7 @@ public partial class PlayerManager : Node2D
 	public delegate void RoundEndEventHandler();
 
 	[Export] public PackedScene[] Weapons;
+	[Export] public PackedScene FinishScreen;
 
 	private NonRepeatingRandomSet<PackedScene> _weapons;
 	private float _currentPauseTimeMs;
@@ -76,7 +77,15 @@ public partial class PlayerManager : Node2D
 		{
 			if (other.PlayerName != player.PlayerName)
 			{
-				other.Health++;
+				if (player.Health == 0)
+				{
+					SendToFinalRoom(other);
+					return;
+				}
+				else
+				{
+					other.Health++;
+				}
 			}
 		}
 		StopPlayerProcessing();
@@ -154,5 +163,17 @@ public partial class PlayerManager : Node2D
 		{
 			player.SetWeapon(weapon.Instantiate<Node2D>());
 		}
+	}
+
+	private void SendToFinalRoom(PlayerController2 player)
+	{
+		player.GetParent().RemoveChild(player);
+		GetTree().CurrentScene.QueueFree();
+		var newScene = FinishScreen.Instantiate<Node2D>();
+		GetTree().Root.AddChild(newScene);
+		GetTree().CurrentScene = newScene;
+		var spawnPoint = newScene.GetNode<Node2D>("PlayerSpawn");
+		newScene.AddChild(player);
+		player.GlobalPosition = spawnPoint.GlobalPosition;
 	}
 }
