@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=3 uid="uid://be75d0y50mpuk"]
+[gd_scene load_steps=13 format=3 uid="uid://be75d0y50mpuk"]
 
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_v6pgq"]
 [ext_resource type="Script" path="res://code/character/ArenaCamera.cs" id="2_glcn0"]
@@ -8,8 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://bf8uwc10njf4d" path="res://texture/devil/snakeLava_ani.png" id="5_8wqj4"]
 [ext_resource type="Script" path="res://code/Devil.cs" id="6_6mnpy"]
 [ext_resource type="Script" path="res://code/AnimatedText.cs" id="7_iccou"]
-[ext_resource type="Script" path="res://code/character/PlayerController2.cs" id="9_qoqvg"]
-[ext_resource type="Texture2D" uid="uid://b3oaagq3y8iru" path="res://kenney_abstract-platformer/PNG/Enemies/enemyWalking_1.png" id="10_5b4ur"]
+[ext_resource type="Script" path="res://code/DevilRoomSpawner.cs" id="9_ohn2f"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_cn43r"]
 size = Vector2(63, 85)
@@ -38,9 +37,6 @@ animations = [{
 "name": &"idle",
 "speed": 1.0
 }]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_146kj"]
-radius = 18.6011
 
 [node name="FinishRoom" type="Node2D"]
 
@@ -106,20 +102,9 @@ offset_bottom = -75.0
 script = ExtResource("7_iccou")
 CharactersPerMs = 0.01
 
-[node name="player1" type="CharacterBody2D" parent="."]
-position = Vector2(604, -32)
-scale = Vector2(1.41, 1.41)
-collision_layer = 2
-collision_mask = 3
-script = ExtResource("9_qoqvg")
-WeaponOffset = Vector2(30, 5)
-
-[node name="Sprite2D" type="Sprite2D" parent="player1"]
-position = Vector2(0, -1)
-texture = ExtResource("10_5b4ur")
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="player1"]
-shape = SubResource("CircleShape2D_146kj")
+[node name="PlayerSpawn" type="Node2D" parent="." groups=["PlayerSpawn"]]
+position = Vector2(604, -34)
+script = ExtResource("9_ohn2f")
 
 [connection signal="JokeSelected" from="Joke1" to="Devil" method="OnJokeSelected"]
 [connection signal="body_entered" from="Joke1" to="Joke1" method="OnBodyEntered"]
