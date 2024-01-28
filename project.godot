@@ -15,10 +15,6 @@ run/main_scene="res://code/HUD/ArenaScene.tscn"
 config/features=PackedStringArray("4.2", "C#", "Forward Plus")
 config/icon="res://icon.svg"
 
-[autoload]
-
-TransitionManager="*res://code/TransitionManager.cs"
-
 [display]
 
 window/size/viewport_width=2000
