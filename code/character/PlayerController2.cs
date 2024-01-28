@@ -63,7 +63,7 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 		set
 		{
 			_health = value;
-			this.GetNodeOrNull<HUD>("../HUD/HUD")?.UpdatePlayerHealth(this);
+			((HUD)this.GetTree().GetFirstNodeInGroup("HUD"))?.UpdatePlayerHealth(this);
 		}
 	}
 
@@ -88,11 +88,11 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 		{
 			if (!value)
 			{
-				GetNode<AnimatedSprite2D>("AnimatedSprite2D").Modulate = DeadColor;
+				SelfSprite.Modulate = DeadColor;
 			}
 			else
 			{
-				GetNode<AnimatedSprite2D>("AnimatedSprite2D").Modulate = Colors.White;
+				SelfSprite.Modulate = Colors.White;
 			}
 
 			_alive = value;

@@ -29,7 +29,7 @@ public partial class TransitionManager : Node2D
         {
             throw new ArgumentException("Winner was never set!");
         }
-        return ResourceLoader.Load<PackedScene>("res://prototype/" + _winner).Instantiate<PlayerController2>();
+        return ResourceLoader.Load<PackedScene>("res://prototype/" + _winner + ".tscn").Instantiate<PlayerController2>();
     }
     
 

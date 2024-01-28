@@ -20,10 +20,15 @@ public class NonRepeatingRandomSet<T>
     {
         if (_index >= _upcoming.Count)
         {
-            Shuffle(_upcoming);
-            _index = 0;
+            Shuffle();
         }
         return _upcoming[_index++];
+    }
+
+    public void Shuffle()
+    {
+        Shuffle(_upcoming);
+        _index = 0;
     }
     
     private static void Shuffle(IList<T> list)

@@ -5,7 +5,7 @@
 
 [node name="Node2D" type="Node2D"]
 
-[node name="HUD" type="CanvasLayer" parent="."]
+[node name="HUD" type="CanvasLayer" parent="." groups=["HUD"]]
 script = ExtResource("1_gnndv")
 
 [node name="Player1HealthLabel" type="Label" parent="HUD"]
