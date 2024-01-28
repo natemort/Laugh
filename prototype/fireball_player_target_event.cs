@@ -92,4 +92,12 @@ public partial class fireball_player_target_event : Node2D
 			this.QueueFree();
 		}
 	}
+
+	public void _on_tree_exiting()
+	{
+		foreach (Node2D n in _cameraTargets)
+		{
+			_camera.removeTarget(n);
+		}
+	}
 }

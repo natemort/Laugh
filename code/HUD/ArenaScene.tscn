@@ -807,14 +807,14 @@ position = Vector2(-2255, 348)
 [node name="topright" type="Node2D" parent="FireballPoints/Camera" groups=["FireballCamera"]]
 position = Vector2(2150, -1022)
 
-[node name="Node2D59" type="Node2D" parent="." groups=["FireballSpawnPoints"]]
+[node name="Node2D59" type="Node2D" parent="FireballPoints" groups=["FireballSpawnPoints"]]
 position = Vector2(3242, 612)
 
-[node name="Node2D60" type="Node2D" parent="." groups=["FireballSpawnPoints"]]
+[node name="Node2D60" type="Node2D" parent="FireballPoints" groups=["FireballSpawnPoints"]]
 position = Vector2(3245, 707)
 
-[node name="Node2D61" type="Node2D" parent="." groups=["FireballSpawnPoints"]]
+[node name="Node2D61" type="Node2D" parent="FireballPoints" groups=["FireballSpawnPoints"]]
 position = Vector2(3249, 804)
 
 [connection signal="child_exiting_tree" from="EventManager" to="EventManager" method="OnChildExiting"]
-[connection signal="RoundStart" from="PlayerManager" to="EventManager" method="ResetEvents"]
+[connection signal="RoundRespawn" from="PlayerManager" to="EventManager" method="ResetEvents"]

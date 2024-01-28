@@ -178,7 +178,6 @@ position = Vector2(872, 440)
 [node name="PlayerManager" type="Node2D" parent="." groups=["PlayerManager"]]
 script = ExtResource("10_xux30")
 Weapons = Array[PackedScene]([ExtResource("11_jo25s"), ExtResource("12_rdjv3"), ExtResource("12_0vuc2")])
-test = true
 
 [node name="FireballCameraPoints" type="CanvasLayer" parent="."]
 

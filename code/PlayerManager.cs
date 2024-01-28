@@ -12,6 +12,9 @@ public partial class PlayerManager : Node2D
 	public delegate void RoundStartEventHandler();
 
 	[Signal]
+	public delegate void RoundRespawnEventHandler();
+
+	[Signal]
 	public delegate void RoundEndEventHandler();
 
 	[Export] public PackedScene[] Weapons;
@@ -56,6 +59,7 @@ public partial class PlayerManager : Node2D
 		if (_respawnState == RespawnState.death && Time.GetTicksMsec() - _currentPauseTimeMs >= _waitTimeMs)
 		{
 			// now respawn them
+			EmitSignal(SignalName.RoundRespawn);
 			Respawn();
 			SwapWeapons();
 		} else if (_respawnState == RespawnState.preSpawn && Time.GetTicksMsec() - _currentPauseTimeMs >= _waitTimeMs)
