@@ -1,8 +1,8 @@
 [gd_scene load_steps=6 format=3 uid="uid://cskqmkairoq0k"]
 
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_4qw6u"]
+[ext_resource type="PackedScene" uid="uid://5limexikbdin" path="res://prototype/revolver.tscn" id="3_c4n64"]
 [ext_resource type="Script" path="res://code/character/PlayerController2.cs" id="4_eh2y8"]
-[ext_resource type="Script" path="res://code/event/EventManager.cs" id="4_n4ugr"]
 [ext_resource type="Texture2D" uid="uid://b3oaagq3y8iru" path="res://kenney_abstract-platformer/PNG/Enemies/enemyWalking_1.png" id="5_oni5p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mij0j"]
@@ -14,12 +14,15 @@ radius = 18.6011
 tile_set = ExtResource("1_4qw6u")
 format = 2
 layer_0/name = "Foreground"
-layer_0/tile_data = PackedInt32Array(65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 131086, 1, 0, 196621, 1, 0, 196620, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 2, 131073, 0, 3, 131073, 0, 4, 131073, 0, 5, 131073, 0, 6, 131073, 0, 7, 131073, 0, 8, 131073, 0, 9, 131073, 0, 10, 131073, 0, 11, 131073, 0, 12, 131073, 0, 13, 131073, 0, -196599, 327681, 0, -196598, 393217, 0, -196597, 458753, 0, 1, 262145, 2, -65535, 262145, 1, -131072, 262145, 1, -131073, 262145, 1, -65536, 262145, 2, -65537, 262145, 2, 0, 1, 2, -1, 1, 2, 65535, 1, 1, -2, 1, 1, 65534, 1, 0, -65538, 1, 0, -131074, 65537, 0, -196605, 458753, 2, -196603, 524289, 2, -196604, 131073, 0, -262140, 589825, 1, -65524, 720897, 1, -65529, 720897, 0, -196610, 720897, 0, -65533, 720897, 0, -65526, 655361, 1, -262135, 655361, 1, 327693, 1, 0, 393229, 1, 0, 458765, 1, 0, 524301, 1, 0, 262157, 1, 0)
+layer_0/tile_data = PackedInt32Array(65541, 1, 0, 65542, 1, 0, 65543, 1, 0, 65544, 1, 0, 65545, 1, 0, 65546, 1, 0, 65547, 1, 0, 65548, 1, 0, 65549, 1, 0, 65550, 1, 0, 131086, 1, 0, 196621, 1, 0, 196620, 1, 0, 131082, 1, 0, 131083, 1, 0, 131084, 1, 0, 131085, 1, 0, 2, 131073, 0, 3, 131073, 0, 4, 131073, 0, 5, 131073, 0, 6, 131073, 0, 7, 131073, 0, 8, 131073, 0, 9, 131073, 0, 10, 131073, 0, 11, 131073, 0, 12, 131073, 0, 13, 131073, 0, -196599, 327681, 0, -196598, 393217, 0, -196597, 458753, 0, 1, 262145, 2, -65535, 262145, 1, -131072, 262145, 1, -131073, 262145, 1, -65536, 262145, 2, -65537, 262145, 2, 0, 1, 2, -1, 1, 2, 65535, 1, 1, -2, 1, 1, 65534, 1, 0, -65538, 1, 0, -131074, 131073, 2, -196605, 458753, 2, -196603, 524289, 2, -196604, 131073, 0, -262140, 589825, 1, -65524, 720897, 1, -65529, 720897, 0, -196610, 131073, 1, -65533, 720897, 0, -65526, 655361, 1, -262135, 655361, 1, 327693, 1, 0, 393229, 1, 0, 458765, 1, 0, 524301, 1, 0, 262157, 1, 0, -131075, 1, 0, -196611, 1, 0, -262147, 1, 0, -327683, 1, 0, -393219, 1, 0, -393218, 1, 0, -393217, 1, 0, -458752, 1, 0, -458751, 1, 0, -458750, 1, 0, -458749, 1, 0, -458748, 1, 0, -458747, 1, 0, -458746, 1, 0, -458745, 1, 0, -458744, 1, 0, -458743, 1, 0, -458742, 1, 0, -458741, 1, 0, -458740, 1, 0, -458739, 1, 0, -458738, 1, 0, -458737, 1, 0, -393201, 1, 0, -327665, 1, 0, -327664, 1, 0, -262128, 1, 0, -196592, 1, 0, -131056, 1, 0, -65520, 1, 0, 16, 1, 0, 65552, 1, 0, 65551, 1, 0, 14, 131073, 0, 15, 131073, 0, -327682, 524289, 2, -393202, 458753, 2, -262129, 458753, 2)
 
 [node name="player1" type="CharacterBody2D" parent="."]
 position = Vector2(446, -115)
 scale = Vector2(1.41, 1.41)
+collision_layer = 2
+collision_mask = 3
 script = ExtResource("4_eh2y8")
+StartingWeapon = ExtResource("3_c4n64")
 WeaponOffset = Vector2(30, 5)
 
 [node name="Sprite2D" type="Sprite2D" parent="player1"]
@@ -31,11 +34,6 @@ shape = SubResource("CircleShape2D_mij0j")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(499, -112)
-
-[node name="EventManager" type="Node2D" parent="."]
-script = ExtResource("4_n4ugr")
-Events = PackedStringArray("res://prototype/explosion_event.tscn")
-EventDelayMinMs = 10000
 
 [node name="ExplosionSpawn1" type="Node2D" parent="." groups=["ExplosionSpawnPoints"]]
 position = Vector2(-194, -448)
@@ -66,5 +64,3 @@ position = Vector2(938, -252)
 
 [node name="ExplosionSpawn10" type="Node2D" parent="." groups=["ExplosionSpawnPoints"]]
 position = Vector2(1254, -48)
-
-[connection signal="child_exiting_tree" from="EventManager" to="EventManager" method="OnChildExiting"]

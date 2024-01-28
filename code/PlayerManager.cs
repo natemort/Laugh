@@ -14,12 +14,12 @@ public partial class PlayerManager : Node2D
 	[Signal]
 	public delegate void RoundEndEventHandler();
 
-	[Export] public String[] Weapons;
+	[Export] public PackedScene[] Weapons;
 
 	[Export]
 	private bool test = false;
 
-	private NonRepeatingRandomSet<String> _weapons;
+	private NonRepeatingRandomSet<PackedScene> _weapons;
 	private float _currentPauseTimeMs;
 	private float _waitTimeMs = 1500;
 	private RespawnState _respawnState = RespawnState.none;
@@ -52,7 +52,7 @@ public partial class PlayerManager : Node2D
 			}
 		}
 
-		_weapons = new NonRepeatingRandomSet<string>(Weapons);
+		_weapons = new NonRepeatingRandomSet<PackedScene>(Weapons);
 		SwapWeapons();
 	}
 
@@ -167,11 +167,10 @@ public partial class PlayerManager : Node2D
 
 	public void SwapWeapons()
 	{
-		String weapon = _weapons.GetRandom();
-		PackedScene weaponPacked = ResourceLoader.Load<PackedScene>(weapon);
+		PackedScene weapon = _weapons.GetRandom();
 		foreach (PlayerController2 player in _players)
 		{
-			player.SetWeapon(weaponPacked.Instantiate<Node2D>());
+			player.SetWeapon(weapon.Instantiate<Node2D>());
 		}
 	}
 }

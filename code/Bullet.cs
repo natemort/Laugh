@@ -2,10 +2,8 @@ using Godot;
 using System;
 using Laugh.code;
 
-public partial class Bullet : Area2D, Killable
+public partial class Bullet : CharacterBody2D, Killable
 {
-	public Vector2 Velocity { get; set; } = Vector2.Right;
-
 	private double _spawnTime;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
@@ -23,15 +21,13 @@ public partial class Bullet : Area2D, Killable
 
 	public override void _PhysicsProcess(double delta)
 	{
-		Position += Velocity * (float)delta;
-	}
-
-	public void OnBodyEntered(Node2D node)
-	{
-		if (node is Killable k)
+		var collision = MoveAndCollide(Velocity * (float)delta);
+		if (collision == null) return;
+		
+		if (collision.GetCollider() is Killable k)
 		{
 			k.Kill();
-		}
+		} 
 		Kill();
 	}
 

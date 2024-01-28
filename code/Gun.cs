@@ -9,13 +9,15 @@ public partial class Gun : Sprite2D, Weapon
 	[Export]
 	public float BulletSpeed = 1500;
 
+	[Export] public PackedScene BulletType;
+	[Export] public Node2D FirePoint;
+
 	private double _lastFired;
 
-	private PackedScene _bulletPrototype;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_bulletPrototype = ResourceLoader.Load<PackedScene>("res://prototype/bullet.tscn");
+		
 	}
 
 	public void Fire()
@@ -23,9 +25,9 @@ public partial class Gun : Sprite2D, Weapon
 		if ((Time.GetTicksMsec() - _lastFired) > FireDelayMs)
 		{
 			this._lastFired = Time.GetTicksMsec();
-			var bullet = _bulletPrototype.Instantiate<Bullet>();
+			var bullet = BulletType.Instantiate<CharacterBody2D>();
 			this.GetTree().Root.AddChild(bullet);
-			var spawnPoint = this.GetChild<Node2D>(0).GlobalPosition;
+			var spawnPoint = FirePoint.GlobalPosition;
 			bullet.GlobalPosition = spawnPoint;
 			var direction = ((spawnPoint - GlobalPosition) with { Y = 0 }).Normalized();
 			if (direction.X < 0)

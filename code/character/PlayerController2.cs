@@ -33,6 +33,8 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	public String DashControl = "p1-dash";
 	[Export] 
 	public float DashForce = 7500f;
+
+	[Export] public PackedScene StartingWeapon;
 	private Vector2 _dashDirection = Vector2.Zero;
 	private bool _canDash = true;
 	private bool _dashing = false;
@@ -51,7 +53,7 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 		set
 		{
 			_health = value;
-			this.GetNode<HUD>("../HUD/HUD").UpdatePlayerHealth(this);
+			this.GetNodeOrNull<HUD>("../HUD/HUD")?.UpdatePlayerHealth(this);
 		}
 	}
 
@@ -73,6 +75,10 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 		FastFallVelocity *= frames;
 		
 		_initialXScale = this.Scale.X;
+		if (StartingWeapon != null)
+		{
+			SetWeapon(StartingWeapon.Instantiate<Node2D>());
+		}
 	}
 
 	public void SetWeapon(Node2D weapon) 
@@ -96,8 +102,8 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	{
 		if (StopPhysics) return;
 		Vector2 velocity = Velocity; 
-		GD.Print(this.PlayerName + " new iteration vel: " + velocity);
-		GD.Print("delta = " + delta);
+		//GD.Print(this.PlayerName + " new iteration vel: " + velocity);
+		//GD.Print("delta = " + delta);
 		
 		// Handle death conditions
 		if (Input.IsActionJustPressed(DeathControl))
@@ -113,7 +119,7 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 		
 		
 		this.Velocity = velocity;
-		GD.Print("global velocity is: " + Velocity);
+		//GD.Print("global velocity is: " + Velocity);
 		MoveAndSlide();
 	}
 
@@ -130,12 +136,12 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 		GD.Print("before movement: " + velocity.X);
 		if (Input.IsActionPressed(LeftControl) && ! (velocity.X < Speed * Vector2.Left.X * delta))
 		{
-			GD.Print("left override");
+			//GD.Print("left override");
 			velocity.X = Speed * Vector2.Left.X * (float)delta;
 			_dashDirection = Vector2.Left;
 		} else if (Input.IsActionPressed(RightControl) && !(velocity.X > Speed * Vector2.Right.X * delta))
 		{
-			GD.Print("right override");
+			//GD.Print("right override");
 			velocity.X = Speed * Vector2.Right.X * (float)delta;
 			_dashDirection = Vector2.Right;
 		}else
@@ -159,7 +165,7 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 				X = -_initialXScale
 			};
 		}
-		GD.Print("after movement: " + velocity.X);
+		//GD.Print("after movement: " + velocity.X);
 		return velocity;
 	}
 	public Vector2 JumpAndFastFall(Vector2 velocity, double delta)
@@ -196,13 +202,13 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 		if (Input.IsActionJustPressed(DashControl) && _canDash)
 		{
 			// do animation?
-			GD.Print("dashing");
-			GD.Print("dashing vel before:" + velocity);
+			//GD.Print("dashing");
+			//GD.Print("dashing vel before:" + velocity);
 			velocity = _dashDirection.Normalized() * DashForce * (float)delta;
 			_canDash = false;
 			_dashing = true;
 			_lastDashMs = Time.GetTicksMsec();
-			GD.Print("dashing vel after:" + velocity);
+			//GD.Print("dashing vel after:" + velocity);
 		}
 		// GD.Print(velocity);
 		// dash cooldown reset?
