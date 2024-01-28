@@ -51,7 +51,7 @@ animations = [{
 }]
 
 [node name="Fireball" type="Area2D"]
-scale = Vector2(3, 3)
+scale = Vector2(6, 6)
 script = ExtResource("6_g2q1o")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
@@ -64,10 +64,10 @@ scale = Vector2(1, 1.4375)
 sprite_frames = SubResource("SpriteFrames_6m8q0")
 animation = &"new_animation"
 autoplay = "new_animation"
-frame_progress = 0.901047
+frame_progress = 0.321991
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 4.0
+wait_time = 6.0
 one_shot = true
 autostart = true
 

@@ -10,7 +10,7 @@ public partial class ArenaCamera : Camera2D
 	[Export] public float MoveSpeed = 5f;
 	[Export] public float ZoomSpeed = 3f;
 	[Export] public float MinZoom = 5f; // camera wont zoom closer than this
-	[Export] public float MaxZoom = 0.5f; // camera wont zoom farther than this
+	[Export] public float MaxZoom = 0.3f; // camera wont zoom farther than this
 	[Export] public Array<Node2D> Targets = new();
 	[Export] public Vector2 Margin = new Vector2(400f, 250f);
 
@@ -32,7 +32,7 @@ public partial class ArenaCamera : Camera2D
 	{
 		// Camera cenetered between 2 targets
 		var positions = Vector2.Zero;
-		foreach(Node2D n in _targets) positions += n.Position;
+		foreach(Node2D n in _targets) positions += n.GlobalPosition;
 		positions /= _targets.Count;
 		Position = Position.Lerp(positions, MoveSpeed * (float)delta);
 		
@@ -41,7 +41,7 @@ public partial class ArenaCamera : Camera2D
 		Rect2 rect = new Rect2(Position, Vector2.One);
 		foreach (Node2D n in _targets)
 		{
-			rect = rect.Expand(n.Position);
+			rect = rect.Expand(n.GlobalPosition);
 			// GD.Print("include: " + n.GlobalPosition);
 		}
 		

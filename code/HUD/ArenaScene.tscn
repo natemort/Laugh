@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://c2o47rt8ni8rd"]
+[gd_scene load_steps=11 format=3 uid="uid://c2o47rt8ni8rd"]
 
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_w2o0g"]
 [ext_resource type="Script" path="res://code/character/PlayerController2.cs" id="2_uklay"]
@@ -8,6 +8,7 @@
 [ext_resource type="PackedScene" uid="uid://brlnubnrldbgt" path="res://code/HUD/hud.tscn" id="6_s8n7k"]
 [ext_resource type="Script" path="res://code/event/EventManager.cs" id="7_t65qn"]
 [ext_resource type="Script" path="res://code/PlayerManager.cs" id="8_tasl1"]
+[ext_resource type="PackedScene" uid="uid://bwcyogubqj703" path="res://prototype/fireball_player_target_event.tscn" id="9_nhk0m"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhdka"]
 radius = 18.6011
@@ -23,7 +24,7 @@ layer_0/tile_data = PackedInt32Array(65535, 65537, 0, 0, 131073, 0, -65534, 1310
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="player1" type="CharacterBody2D" parent="."]
+[node name="player1" type="CharacterBody2D" parent="." groups=["PlayerGroup"]]
 position = Vector2(-729, -237)
 scale = Vector2(1.41, 1.41)
 collision_layer = 2
@@ -38,7 +39,7 @@ texture = ExtResource("3_rx44j")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player1"]
 shape = SubResource("CircleShape2D_nhdka")
 
-[node name="player2" type="CharacterBody2D" parent="."]
+[node name="player2" type="CharacterBody2D" parent="." groups=["PlayerGroup"]]
 position = Vector2(-434, -232)
 scale = Vector2(1.4, 1.4)
 collision_layer = 2
@@ -271,6 +272,7 @@ position = Vector2(-1345, -45)
 
 [node name="EventManager" type="Node2D" parent="." groups=["EventManager"]]
 script = ExtResource("7_t65qn")
+Events = Array[PackedScene]([ExtResource("9_nhk0m")])
 
 [node name="PlayerManager" type="Node2D" parent="." groups=["PlayerManager"]]
 script = ExtResource("8_tasl1")
@@ -280,6 +282,519 @@ test = true
 
 [node name="Spawn" type="CanvasLayer" parent="FireballPoints"]
 
+[node name="Node2D" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2663, -1574)
+
+[node name="Node2D2" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2558, -1576)
+
+[node name="Node2D3" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2458, -1576)
+
+[node name="Node2D4" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2354, -1576)
+
+[node name="Node2D5" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2249, -1578)
+
+[node name="Node2D6" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2149, -1578)
+
+[node name="Node2D7" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2049, -1581)
+
+[node name="Node2D8" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1944, -1583)
+
+[node name="Node2D9" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1842, -1583)
+
+[node name="Node2D10" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1743, -1588)
+
+[node name="Node2D11" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1638, -1590)
+
+[node name="Node2D12" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1538, -1590)
+
+[node name="Node2D13" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1443, -1586)
+
+[node name="Node2D14" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1341, -1583)
+
+[node name="Node2D15" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1238, -1581)
+
+[node name="Node2D16" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1129, -1581)
+
+[node name="Node2D17" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1031, -1580)
+
+[node name="Node2D18" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-924, -1583)
+
+[node name="Node2D19" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-818, -1581)
+
+[node name="Node2D20" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-725, -1576)
+
+[node name="Node2D21" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-623, -1576)
+
+[node name="Node2D22" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-528, -1579)
+
+[node name="Node2D23" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-430, -1581)
+
+[node name="Node2D24" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-335, -1586)
+
+[node name="Node2D25" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-230, -1588)
+
+[node name="Node2D26" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-130, -1588)
+
+[node name="Node2D27" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-26, -1588)
+
+[node name="Node2D28" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(79, -1590)
+
+[node name="Node2D29" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(179, -1590)
+
+[node name="Node2D30" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(279, -1593)
+
+[node name="Node2D31" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(384, -1595)
+
+[node name="Node2D32" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(486, -1595)
+
+[node name="Node2D33" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(585, -1600)
+
+[node name="Node2D34" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(690, -1602)
+
+[node name="Node2D35" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(790, -1602)
+
+[node name="Node2D36" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(885, -1598)
+
+[node name="Node2D37" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(987, -1595)
+
+[node name="Node2D38" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1090, -1593)
+
+[node name="Node2D39" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1199, -1593)
+
+[node name="Node2D40" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1297, -1592)
+
+[node name="Node2D41" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1404, -1595)
+
+[node name="Node2D42" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1510, -1593)
+
+[node name="Node2D43" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1603, -1588)
+
+[node name="Node2D44" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1705, -1588)
+
+[node name="Node2D45" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1800, -1591)
+
+[node name="Node2D46" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1898, -1593)
+
+[node name="Node2D47" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2001, -1595)
+
+[node name="Node2D48" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2106, -1597)
+
+[node name="Node2D49" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2206, -1597)
+
+[node name="Node2D50" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2310, -1597)
+
+[node name="Node2D51" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2415, -1599)
+
+[node name="Node2D52" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2515, -1599)
+
+[node name="Node2D53" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2615, -1602)
+
+[node name="Node2D54" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2720, -1604)
+
+[node name="Node2D55" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2822, -1604)
+
+[node name="Node2D56" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2921, -1609)
+
+[node name="Node2D57" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3026, -1611)
+
+[node name="Node2D58" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3126, -1611)
+
+[node name="Node2D59" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3221, -1607)
+
+[node name="Node2D60" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3224, -1512)
+
+[node name="Node2D61" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3228, -1415)
+
+[node name="Node2D62" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3230, -1322)
+
+[node name="Node2D63" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3228, -1234)
+
+[node name="Node2D64" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3227, -1149)
+
+[node name="Node2D65" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3228, -1055)
+
+[node name="Node2D66" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3231, -960)
+
+[node name="Node2D67" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3235, -863)
+
+[node name="Node2D68" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3237, -770)
+
+[node name="Node2D69" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3235, -682)
+
+[node name="Node2D70" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3234, -597)
+
+[node name="Node2D71" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3233, -496)
+
+[node name="Node2D72" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3236, -401)
+
+[node name="Node2D73" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3240, -304)
+
+[node name="Node2D74" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3242, -211)
+
+[node name="Node2D75" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3240, -123)
+
+[node name="Node2D76" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3239, -38)
+
+[node name="Node2D77" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3235, 60)
+
+[node name="Node2D78" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3238, 155)
+
+[node name="Node2D79" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3242, 252)
+
+[node name="Node2D80" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3244, 345)
+
+[node name="Node2D81" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3242, 433)
+
+[node name="Node2D82" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3241, 518)
+
+[node name="Node2D83" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2649, 940)
+
+[node name="Node2D84" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2544, 938)
+
+[node name="Node2D85" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2444, 938)
+
+[node name="Node2D86" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2340, 938)
+
+[node name="Node2D87" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2235, 936)
+
+[node name="Node2D88" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2135, 936)
+
+[node name="Node2D89" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2035, 933)
+
+[node name="Node2D90" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1930, 931)
+
+[node name="Node2D91" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1828, 931)
+
+[node name="Node2D92" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1729, 926)
+
+[node name="Node2D93" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1624, 924)
+
+[node name="Node2D94" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1524, 924)
+
+[node name="Node2D95" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1429, 928)
+
+[node name="Node2D96" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1327, 931)
+
+[node name="Node2D97" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1224, 933)
+
+[node name="Node2D98" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1115, 933)
+
+[node name="Node2D99" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-1017, 934)
+
+[node name="Node2D100" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-910, 931)
+
+[node name="Node2D101" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-804, 933)
+
+[node name="Node2D102" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-711, 938)
+
+[node name="Node2D103" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-609, 938)
+
+[node name="Node2D104" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-514, 935)
+
+[node name="Node2D105" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-416, 933)
+
+[node name="Node2D106" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-321, 928)
+
+[node name="Node2D107" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-216, 926)
+
+[node name="Node2D108" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-116, 926)
+
+[node name="Node2D109" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-12, 926)
+
+[node name="Node2D110" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(93, 924)
+
+[node name="Node2D111" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(193, 924)
+
+[node name="Node2D112" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(293, 921)
+
+[node name="Node2D113" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(398, 919)
+
+[node name="Node2D114" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(500, 919)
+
+[node name="Node2D115" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(599, 914)
+
+[node name="Node2D116" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(704, 912)
+
+[node name="Node2D117" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(804, 912)
+
+[node name="Node2D118" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(899, 916)
+
+[node name="Node2D119" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1001, 919)
+
+[node name="Node2D120" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1104, 921)
+
+[node name="Node2D121" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1213, 921)
+
+[node name="Node2D122" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1311, 922)
+
+[node name="Node2D123" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1418, 919)
+
+[node name="Node2D124" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1524, 921)
+
+[node name="Node2D125" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1617, 926)
+
+[node name="Node2D126" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1719, 926)
+
+[node name="Node2D127" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1814, 923)
+
+[node name="Node2D128" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(1912, 921)
+
+[node name="Node2D129" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2015, 919)
+
+[node name="Node2D130" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2120, 917)
+
+[node name="Node2D131" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2220, 917)
+
+[node name="Node2D132" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2324, 917)
+
+[node name="Node2D133" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2429, 915)
+
+[node name="Node2D134" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2529, 915)
+
+[node name="Node2D135" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2629, 912)
+
+[node name="Node2D136" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2734, 910)
+
+[node name="Node2D137" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2836, 910)
+
+[node name="Node2D138" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(2935, 905)
+
+[node name="Node2D139" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3040, 903)
+
+[node name="Node2D140" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3140, 903)
+
+[node name="Node2D141" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(3235, 907)
+
+[node name="Node2D144" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2737, 933)
+
+[node name="Node2D145" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2863, -1581)
+
+[node name="Node2D146" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2860, -1486)
+
+[node name="Node2D147" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2856, -1389)
+
+[node name="Node2D148" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2854, -1296)
+
+[node name="Node2D149" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2856, -1208)
+
+[node name="Node2D150" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2857, -1123)
+
+[node name="Node2D151" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2856, -1029)
+
+[node name="Node2D152" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2853, -934)
+
+[node name="Node2D153" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2849, -837)
+
+[node name="Node2D154" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2847, -744)
+
+[node name="Node2D155" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2849, -656)
+
+[node name="Node2D156" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2850, -571)
+
+[node name="Node2D157" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2851, -470)
+
+[node name="Node2D158" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2848, -375)
+
+[node name="Node2D159" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2844, -278)
+
+[node name="Node2D160" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2842, -185)
+
+[node name="Node2D161" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2844, -97)
+
+[node name="Node2D162" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2845, -12)
+
+[node name="Node2D163" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2849, 86)
+
+[node name="Node2D164" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2846, 181)
+
+[node name="Node2D165" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2842, 278)
+
+[node name="Node2D166" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2840, 371)
+
+[node name="Node2D167" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2842, 459)
+
+[node name="Node2D168" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2843, 544)
+
+[node name="Node2D169" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2849, 933)
+
+[node name="Node2D170" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2842, 638)
+
+[node name="Node2D171" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2839, 733)
+
+[node name="Node2D172" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2835, 830)
+
+[node name="Node2D175" type="Node2D" parent="FireballPoints/Spawn" groups=["FireballSpawnPoints"]]
+position = Vector2(-2756, -1581)
+
 [node name="Camera" type="CanvasLayer" parent="FireballPoints"]
 
 [node name="botleft" type="Node2D" parent="FireballPoints/Camera" groups=["FireballCamera"]]
@@ -287,6 +802,15 @@ position = Vector2(-2712, 595)
 
 [node name="topright" type="Node2D" parent="FireballPoints/Camera" groups=["FireballCamera"]]
 position = Vector2(2980, -1526)
+
+[node name="Node2D59" type="Node2D" parent="." groups=["FireballSpawnPoints"]]
+position = Vector2(3242, 612)
+
+[node name="Node2D60" type="Node2D" parent="." groups=["FireballSpawnPoints"]]
+position = Vector2(3245, 707)
+
+[node name="Node2D61" type="Node2D" parent="." groups=["FireballSpawnPoints"]]
+position = Vector2(3249, 804)
 
 [connection signal="child_exiting_tree" from="EventManager" to="EventManager" method="OnChildExiting"]
 [connection signal="RoundStart" from="PlayerManager" to="EventManager" method="ResetEvents"]

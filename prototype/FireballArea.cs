@@ -6,7 +6,7 @@ using Laugh.code;
 public partial class FireballArea : Area2D
 {
 	[Export] public float FireballSpeed = 5f;
-	[Export] public float FireballAcceleration = 63f;
+	[Export] public float FireballAcceleration = 61.75f;
 	[Export] public float FireballMaxSpeed = 1000f;
 
 	public Vector2 Velocity;
@@ -39,10 +39,10 @@ public partial class FireballArea : Area2D
 
 	private void _getDirection()
 	{
-		GD.Print("getting init direction");
+		// GD.Print("getting init direction");
 		Node2D target = (Node2D) _targetPositions[Random.Shared.Next(0, _targetPositions.Count)];
-		GD.Print("tp: " + target.GlobalPosition);
-		GD.Print("cp: " + this.GlobalPosition);
+		// GD.Print("tp: " + target.GlobalPosition);
+		// GD.Print("cp: " + this.GlobalPosition);
 		Velocity = (target.GlobalPosition - this.GlobalPosition).Normalized();
 		GD.Print(Velocity);
 		Rotation = Velocity.Angle();

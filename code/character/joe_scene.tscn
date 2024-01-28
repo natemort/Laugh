@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://cd6sros7a4wn1"]
+[gd_scene load_steps=14 format=3 uid="uid://cd6sros7a4wn1"]
 
 [ext_resource type="Script" path="res://code/character/PlayerController2.cs" id="1_4x5f6"]
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_cbcgy"]
@@ -11,6 +11,7 @@
 [ext_resource type="Script" path="res://code/PlayerManager.cs" id="10_xux30"]
 [ext_resource type="PackedScene" path="res://prototype/lazergun.tscn" id="11_jo25s"]
 [ext_resource type="PackedScene" uid="uid://4mnyiwsaqy56" path="res://prototype/sword.tscn" id="12_0vuc2"]
+[ext_resource type="PackedScene" uid="uid://5limexikbdin" path="res://prototype/revolver.tscn" id="12_rdjv3"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh4i0"]
 radius = 18.6011
@@ -176,7 +177,7 @@ position = Vector2(872, 440)
 
 [node name="PlayerManager" type="Node2D" parent="." groups=["PlayerManager"]]
 script = ExtResource("10_xux30")
-Weapons = Array[PackedScene]([ExtResource("11_jo25s"), ExtResource("12_0vuc2")])
+Weapons = Array[PackedScene]([ExtResource("11_jo25s"), ExtResource("12_rdjv3"), ExtResource("12_0vuc2")])
 test = true
 
 [node name="FireballCameraPoints" type="CanvasLayer" parent="."]
