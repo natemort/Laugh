@@ -21,8 +21,8 @@ TransitionManager="*res://code/TransitionManager.cs"
 
 [display]
 
-window/size/viewport_width=2000
-window/size/viewport_height=1000
+window/size/viewport_width=3000
+window/size/viewport_height=2000
 
 [dotnet]
 
