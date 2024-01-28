@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://bgyglrhu327js"]
+[gd_scene load_steps=13 format=3 uid="uid://bq2ospdu6sdv5"]
 
 [ext_resource type="Script" path="res://code/ExplosionIndicator.cs" id="1_en173"]
 [ext_resource type="Texture2D" uid="uid://dakuvrtsatjsd" path="res://texture/crosshair/1.png" id="2_1llai"]

@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Collections.Generic;
 using System.Numerics;
 using Laugh.code;
 using Vector2 = Godot.Vector2;
@@ -43,6 +44,13 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	private float _dashCooldownMs = 1000f;
 	private float _lastDashMs = 0f;
 
+	[Export] public AnimatedSprite2D SelfSprite;
+	
+	Dictionary<Animations, String> _animations = new Dictionary<Animations, String>();
+	private enum Animations {
+		dash,dive,duck,idle,jump,walk,death
+	}
+
 	[Export] public Vector2 WeaponOffset = Vector2.Zero;
 
 	private int _health = 3;
@@ -80,11 +88,11 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 		{
 			if (!value)
 			{
-				GetNode<Sprite2D>("Sprite2D").Modulate = DeadColor;
+				GetNode<AnimatedSprite2D>("AnimatedSprite2D").Modulate = DeadColor;
 			}
 			else
 			{
-				GetNode<Sprite2D>("Sprite2D").Modulate = Colors.White;
+				GetNode<AnimatedSprite2D>("AnimatedSprite2D").Modulate = Colors.White;
 			}
 
 			_alive = value;
@@ -97,6 +105,16 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 		JumpVelocity *= frames;
 		DashForce *= frames;
 		FastFallVelocity *= frames;
+		
+		_animations.Add(Animations.idle, "idle");
+		_animations.Add(Animations.walk, "walk");
+		_animations.Add(Animations.dash, "dash");
+		_animations.Add(Animations.dive, "dive");
+		_animations.Add(Animations.duck, "duck");
+		_animations.Add(Animations.jump, "jump");
+		_animations.Add(Animations.death, "death");
+
+		SelfSprite.Animation = _animations[Animations.idle];
 		
 		_initialXScale = this.Scale.X;
 		if (StartingWeapon != null)
@@ -137,8 +155,10 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 
 		velocity = Gravity(velocity, delta);
 		velocity = JumpAndFastFall(velocity, delta);
+		GD.Print(PlayerName + " animation after jump/fastfall " + SelfSprite.Animation);
 		
 		velocity = DirectionalMovement(velocity, delta);
+		GD.Print(PlayerName + " animation after direciton " + SelfSprite.Animation);
 		velocity = Dash(velocity, delta);
 		
 		
@@ -157,15 +177,39 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	}
 	private Vector2 DirectionalMovement(Vector2 velocity, double delta)
 	{
+		GD.Print(this.PlayerName + " vel.X: " + velocity.X);
+		GD.Print(this.PlayerName + " ani: " + SelfSprite.Animation);
+		if (Math.Abs(velocity.X) <= 30)
+		{
+			if (Input.IsActionPressed(FastFallControl) && IsOnFloor()) // duck
+			{
+				SelfSprite.Animation = _animations[Animations.duck];
+			}
+			else if (IsOnFloor())
+			{
+				if (SelfSprite.Animation != _animations[Animations.idle]
+				    && SelfSprite.Animation != _animations[Animations.jump]) SelfSprite.Animation = _animations[Animations.idle];
+			}
+		}
 		// GD.Print("before movement: " + velocity.X);
 		if (Input.IsActionPressed(LeftControl) && ! (velocity.X < Speed * Vector2.Left.X * delta))
 		{
 			//GD.Print("left override");
+			if (SelfSprite.Animation != _animations[Animations.walk] 
+			    && SelfSprite.Animation != _animations[Animations.dash] && IsOnFloor())
+			{
+				SelfSprite.Play(_animations[Animations.walk]);
+			}
 			velocity.X = Speed * Vector2.Left.X * (float)delta;
 			_dashDirection = Vector2.Left;
 		} else if (Input.IsActionPressed(RightControl) && !(velocity.X > Speed * Vector2.Right.X * delta))
 		{
 			//GD.Print("right override");
+			if (SelfSprite.Animation != _animations[Animations.walk] 
+			    && SelfSprite.Animation != _animations[Animations.dash] && IsOnFloor())
+			{
+				SelfSprite.Play(_animations[Animations.walk]);
+			}
 			velocity.X = Speed * Vector2.Right.X * (float)delta;
 			_dashDirection = Vector2.Right;
 		}else
@@ -173,10 +217,7 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 			// smooth stopa
 			// GD.Print("lerp override");
 			// GD.Print("(Mathf.Lerp(Velocity.X, 0, 0.5f * (float)delta)) = " + (Mathf.Lerp(velocity.X, 0, 0.25f)));
-
 			velocity.X = Mathf.Lerp(velocity.X, 0, .25f);
-			// velocity.X =  velocity.Lerp(Vector2.One * _dashDirection *(float)delta, 0.1f).X * (float)delta;	
-			// velocity.X = (float) (Mathf.Lerp(velocity.X, Vector2.One.X * Input.GetAxis(LeftControl, RightControl), 0.1) * delta);
 		}
 		
 		
@@ -196,18 +237,23 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	{
 		if (Input.IsActionJustPressed(JumpControl))
 		{
+			
 			if (IsOnFloor())
 			{
+				GD.Print("from " + SelfSprite.Animation + " to " + _animations[Animations.jump]);
+				SelfSprite.Play( _animations[Animations.jump]);
 				velocity.Y = JumpVelocity * (float)delta;
 			} 
 			else if (canDoubleJump)
 			{
+				SelfSprite.Play( _animations[Animations.jump]);
 				canDoubleJump = false;
 				velocity.Y = JumpVelocity * (float)delta;
 			}
 			
 		} else if (Input.IsActionJustPressed(FastFallControl) && !IsOnFloor()) // Fast Fall
 		{
+			SelfSprite.Play(_animations[Animations.dive]);
 			if (velocity.Y < 0) velocity = Vector2.Zero * (float)delta;
 			velocity.Y += FastFallVelocity * (float)delta;
 		}
@@ -226,6 +272,8 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 		if (Input.IsActionJustPressed(DashControl) && _canDash)
 		{
 			// do animation?
+
+			SelfSprite.Play(_animations[Animations.dash]);
 			//GD.Print("dashing");
 			//GD.Print("dashing vel before:" + velocity);
 			velocity = _dashDirection.Normalized() * DashForce * (float)delta;

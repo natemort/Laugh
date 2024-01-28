@@ -1,20 +1,184 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2o47rt8ni8rd"]
+[gd_scene load_steps=35 format=3 uid="uid://c2o47rt8ni8rd"]
 
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_w2o0g"]
 [ext_resource type="Script" path="res://code/character/PlayerController2.cs" id="2_uklay"]
-[ext_resource type="Texture2D" uid="uid://b3oaagq3y8iru" path="res://kenney_abstract-platformer/PNG/Enemies/enemyWalking_1.png" id="3_rx44j"]
-[ext_resource type="Texture2D" uid="uid://b36y0henuau88" path="res://kenney_abstract-platformer/PNG/Enemies/enemyFlying_4.png" id="4_po54m"]
+[ext_resource type="Texture2D" uid="uid://pe80d0me6riy" path="res://kenney_abstract-platformer/PNG/Players/Player Blue/playerBlue_swim1.png" id="3_6t4tk"]
+[ext_resource type="Texture2D" uid="uid://cyyavnsmmqhvm" path="res://kenney_abstract-platformer/PNG/Players/Player Blue/playerBlue_walk1.png" id="3_bg5n4"]
+[ext_resource type="Texture2D" uid="uid://cdjnpx5q102f3" path="res://kenney_abstract-platformer/PNG/Players/Player Blue/playerBlue_up2.png" id="3_e7qd1"]
+[ext_resource type="Texture2D" uid="uid://cttvrab4j23lu" path="res://kenney_abstract-platformer/PNG/Players/Player Green/playerGreen_walk1.png" id="4_3ogwm"]
+[ext_resource type="Texture2D" uid="uid://doxwqn0logrfq" path="res://kenney_abstract-platformer/PNG/Players/Player Blue/playerBlue_swim2.png" id="4_6y6r3"]
+[ext_resource type="Texture2D" uid="uid://b4f2ih8kco4b2" path="res://kenney_abstract-platformer/PNG/Players/Player Blue/playerBlue_up1.png" id="4_dfjf0"]
+[ext_resource type="Texture2D" uid="uid://chb5455ipkdq4" path="res://kenney_abstract-platformer/PNG/Players/Player Blue/playerBlue_walk2.png" id="4_i0t5w"]
+[ext_resource type="Texture2D" uid="uid://ceow4s62u1dkc" path="res://kenney_abstract-platformer/PNG/Players/Player Green/playerGreen_swim1.png" id="4_og6w3"]
+[ext_resource type="Texture2D" uid="uid://d0k0vdc72rwde" path="res://kenney_abstract-platformer/PNG/Players/Player Blue/playerBlue_duck.png" id="5_4x4uo"]
+[ext_resource type="Texture2D" uid="uid://cl3cwbac684lv" path="res://kenney_abstract-platformer/PNG/Players/Player Blue/playerBlue_stand.png" id="5_6y35o"]
+[ext_resource type="Texture2D" uid="uid://beitby4pjewil" path="res://kenney_abstract-platformer/PNG/Players/Player Blue/playerBlue_fall.png" id="5_7jklg"]
+[ext_resource type="Texture2D" uid="uid://bbvcg4sa7xgku" path="res://kenney_abstract-platformer/PNG/Players/Player Blue/playerBlue_dead.png" id="5_65alo"]
 [ext_resource type="Script" path="res://code/character/ArenaCamera.cs" id="5_eud4v"]
+[ext_resource type="Texture2D" uid="uid://c0anc7hii0t3i" path="res://kenney_abstract-platformer/PNG/Players/Player Green/playerGreen_swim2.png" id="5_ghr0y"]
+[ext_resource type="Texture2D" uid="uid://det8hdhif88xt" path="res://kenney_abstract-platformer/PNG/Players/Player Blue/playerBlue_walk3.png" id="5_vu2ct"]
+[ext_resource type="Texture2D" uid="uid://3iwk57w3l7ur" path="res://kenney_abstract-platformer/PNG/Players/Player Green/playerGreen_up2.png" id="6_5f4bi"]
+[ext_resource type="Texture2D" uid="uid://cuihaaroxuwiw" path="res://kenney_abstract-platformer/PNG/Players/Player Green/playerGreen_stand.png" id="6_expno"]
 [ext_resource type="PackedScene" uid="uid://brlnubnrldbgt" path="res://code/HUD/hud.tscn" id="6_s8n7k"]
+[ext_resource type="Texture2D" uid="uid://brspmmu18amhv" path="res://kenney_abstract-platformer/PNG/Players/Player Green/playerGreen_up1.png" id="7_1aj6u"]
 [ext_resource type="Script" path="res://code/event/EventManager.cs" id="7_t65qn"]
 [ext_resource type="Script" path="res://code/PlayerManager.cs" id="8_tasl1"]
 [ext_resource type="PackedScene" uid="uid://5limexikbdin" path="res://prototype/revolver.tscn" id="9_0dyv6"]
-[ext_resource type="PackedScene" uid="uid://bwcyogubqj703" path="res://prototype/fireball_player_target_event.tscn" id="9_nhk0m"]
+[ext_resource type="Texture2D" uid="uid://4rg5nf6q0ddw" path="res://kenney_abstract-platformer/PNG/Players/Player Green/playerGreen_walk2.png" id="9_r2ng7"]
+[ext_resource type="Texture2D" uid="uid://djh3prpn8qrab" path="res://kenney_abstract-platformer/PNG/Players/Player Green/playerGreen_walk3.png" id="10_edp58"]
 [ext_resource type="PackedScene" uid="uid://4mnyiwsaqy56" path="res://prototype/sword.tscn" id="10_koaa1"]
 [ext_resource type="PackedScene" path="res://prototype/lazergun.tscn" id="11_7n211"]
+[ext_resource type="Texture2D" uid="uid://dsthfwsmc7j64" path="res://kenney_abstract-platformer/PNG/Players/Player Green/playerGreen_duck.png" id="14_06a5n"]
+[ext_resource type="Texture2D" uid="uid://djns2t410g3f4" path="res://kenney_abstract-platformer/PNG/Players/Player Green/playerGreen_fall.png" id="15_f3gb8"]
+[ext_resource type="Texture2D" uid="uid://bvsx1m6ki2kar" path="res://kenney_abstract-platformer/PNG/Players/Player Green/playerGreen_dead.png" id="16_pk2tw"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_nhdka"]
-radius = 18.6011
+radius = 18.4534
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_7r82s"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_6t4tk")
+}, {
+"duration": 3.0,
+"texture": ExtResource("4_6y6r3")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_65alo")
+}],
+"loop": true,
+"name": &"death",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_7jklg")
+}],
+"loop": true,
+"name": &"dive",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_4x4uo")
+}],
+"loop": true,
+"name": &"duck",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_6y35o")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("3_e7qd1")
+}, {
+"duration": 2.0,
+"texture": ExtResource("4_dfjf0")
+}],
+"loop": false,
+"name": &"jump",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_bg5n4")
+}, {
+"duration": 0.2,
+"texture": ExtResource("4_i0t5w")
+}, {
+"duration": 1.5,
+"texture": ExtResource("5_vu2ct")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 9.0
+}]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_w5ndy"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_og6w3")
+}, {
+"duration": 3.0,
+"texture": ExtResource("5_ghr0y")
+}],
+"loop": true,
+"name": &"dash",
+"speed": 8.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("16_pk2tw")
+}],
+"loop": true,
+"name": &"death",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("15_f3gb8")
+}],
+"loop": true,
+"name": &"dive",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("14_06a5n")
+}],
+"loop": true,
+"name": &"duck",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("6_expno")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 1.0
+}, {
+"frames": [{
+"duration": 3.0,
+"texture": ExtResource("6_5f4bi")
+}, {
+"duration": 2.0,
+"texture": ExtResource("7_1aj6u")
+}],
+"loop": true,
+"name": &"jump",
+"speed": 14.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_3ogwm")
+}, {
+"duration": 0.2,
+"texture": ExtResource("9_r2ng7")
+}, {
+"duration": 1.5,
+"texture": ExtResource("10_edp58")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_3ogwm")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 14.0
+}]
 
 [node name="MainScene" type="Node2D"]
 
@@ -27,22 +191,24 @@ layer_0/tile_data = PackedInt32Array(65535, 65537, 0, 0, 131073, 0, -65534, 1310
 
 [node name="Node2D" type="Node2D" parent="."]
 
-[node name="player1" type="CharacterBody2D" parent="." groups=["PlayerGroup"]]
+[node name="player1" type="CharacterBody2D" parent="." node_paths=PackedStringArray("SelfSprite") groups=["PlayerGroup"]]
 position = Vector2(-729, -237)
 scale = Vector2(1.41, 1.41)
 collision_layer = 2
 collision_mask = 3
 script = ExtResource("2_uklay")
+SelfSprite = NodePath("AnimatedSprite2D")
 WeaponOffset = Vector2(30, 5)
-
-[node name="Sprite2D" type="Sprite2D" parent="player1"]
-position = Vector2(0, -1)
-texture = ExtResource("3_rx44j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player1"]
 shape = SubResource("CircleShape2D_nhdka")
 
-[node name="player2" type="CharacterBody2D" parent="." groups=["PlayerGroup"]]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player1"]
+texture_filter = 1
+sprite_frames = SubResource("SpriteFrames_7r82s")
+animation = &"jump"
+
+[node name="player2" type="CharacterBody2D" parent="." node_paths=PackedStringArray("SelfSprite") groups=["PlayerGroup"]]
 position = Vector2(-434, -232)
 scale = Vector2(1.4, 1.4)
 collision_layer = 2
@@ -56,18 +222,21 @@ FastFallControl = "p2-fast-fall"
 ActionControl = "p2-action"
 DeathControl = "p2-death"
 DashControl = "p2-dash"
+SelfSprite = NodePath("AnimatedSprite2D")
 WeaponOffset = Vector2(30, 5)
 
-[node name="Sprite2D" type="Sprite2D" parent="player2"]
-position = Vector2(-2.14577e-06, -6.67572e-06)
-scale = Vector2(0.666667, 1.72)
-texture = ExtResource("4_po54m")
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="player2"]
+texture_filter = 1
+scale = Vector2(1, 1)
+sprite_frames = SubResource("SpriteFrames_w5ndy")
+animation = &"jump"
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player2"]
 shape = SubResource("CircleShape2D_nhdka")
 
 [node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("Targets") groups=["CameraGroup"]]
 position = Vector2(-418, -141)
+process_callback = 0
 script = ExtResource("5_eud4v")
 Targets = [NodePath("../player1"), NodePath("../player2")]
 
@@ -276,7 +445,9 @@ position = Vector2(-1345, -45)
 
 [node name="EventManager" type="Node2D" parent="." groups=["EventManager"]]
 script = ExtResource("7_t65qn")
-Events = Array[PackedScene]([ExtResource("9_nhk0m")])
+Events = Array[PackedScene]([])
+EventDelayMinMs = 200000
+EventDelayMaxMs = 100000000
 
 [node name="PlayerManager" type="Node2D" parent="." groups=["PlayerManager"]]
 script = ExtResource("8_tasl1")
