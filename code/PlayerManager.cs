@@ -36,6 +36,7 @@ public partial class PlayerManager : Node2D
 		_players = FindPlayers(GetTree().Root);
 
 		spawnPoints = this.GetTree().GetNodesInGroup("SpawnPoints");
+			GD.Print(spawnPoints);
 		
 		foreach (var player in _players)
 		{
