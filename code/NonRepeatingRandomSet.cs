@@ -15,6 +15,15 @@ public class NonRepeatingRandomSet<T>
         Shuffle(_upcoming);
     }
 
+    public T Peek()
+    {
+        if (_index >= _upcoming.Count)
+        {
+            Shuffle();
+        }
+
+        return _upcoming[_index];
+    }
 
     public T GetRandom()
     {

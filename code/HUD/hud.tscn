@@ -54,5 +54,9 @@ text = "timer"
 script = ExtResource("2_ttnsr")
 
 [node name="Timer" type="Timer" parent="HUD/TimerLabel"]
-wait_time = 15.0
-autostart = true
+wait_time = 10.0
+
+[node name="WeaponPreview" type="Node2D" parent="HUD/TimerLabel"]
+position = Vector2(40, 80)
+
+[connection signal="timeout" from="HUD/TimerLabel/Timer" to="HUD/TimerLabel" method="TriggerWeaponSwap"]

@@ -5,7 +5,7 @@ using Laugh.code;
 public partial class DevilRoomSpawner : Node2D
 {
 	private static readonly String Pause = "\n                               \n";
-	private NonRepeatingRandomSet<String> Jokes = new(
+	private static readonly NonRepeatingRandomSet<String> Jokes = new(
 		new []
 		{
 			$"Why did the minus sign run for office?{Pause}To make a difference.",

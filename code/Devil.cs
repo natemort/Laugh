@@ -43,10 +43,10 @@ public partial class Devil : AnimatedSprite2D
 	{
 		if (State == DevilState.Responding)
 		{
-			SelfModulate = SelfModulate.Lerp(Colors.Red, .006f);
 		}
 		if (State == DevilState.RespondingDelay && (Time.GetTicksMsec() - _lastStateChange) > TextDelayMs)
 		{
+			SelfModulate = Colors.Red;
 			_text.Speak("I'm disappointed");
 			Play("idle");
 			State = DevilState.Responding2;
