@@ -1,13 +1,14 @@
 using Godot;
 using System;
 using System.Collections.Generic;
+using Godot.Collections;
 using Laugh.code;
 
 public partial class fireball_player_target_event : Node2D
 {
 
-	[Export] public int MaxOverallOfFireballs = 100;
-	[Export] public int MinOverallOfFireballs = 50;
+	[Export] public int MaxOverallOfFireballs = 20;
+	[Export] public int MinOverallOfFireballs = 5;
 
 	[Export] public int MinFireballCount = 10;
 	[Export] public int MaxFireballCount = 50;
@@ -18,6 +19,7 @@ public partial class fireball_player_target_event : Node2D
 	[Export] public PackedScene FireballScene;
 	
 	[Export] public String SpawnGroup = "FireballSpawnPoints";
+	
 
 	public float CurrentSpawnDelay;
 	public float CurrentSpawDelayModifier = 1.0f;
@@ -26,6 +28,8 @@ public partial class fireball_player_target_event : Node2D
 	private int _targetSpawnCount;
 	private int _spawnedCount = 0;
 	private float _currentSpawnDelay;
+	private ArenaCamera _camera;
+	private Array<Node> _cameraTargets;
 	
 	
 	// Called when the node enters the scene tree for the first time.
@@ -35,6 +39,16 @@ public partial class fireball_player_target_event : Node2D
 		_lastSpawnMs = Time.GetTicksMsec();
 		_currentSpawnDelay = Random.Shared.Next(MinSpawnDelayMs, MaxSpawnDelayMs);
 		_targetSpawnCount = Random.Shared.Next(MinOverallOfFireballs, MaxOverallOfFireballs);
+
+		GD.Print("num FBs: " + _targetSpawnCount);
+		
+		_camera = (ArenaCamera)GetTree().GetFirstNodeInGroup("CameraGroup");
+		_cameraTargets = GetTree().GetNodesInGroup("FireballCamera");
+		foreach (Node2D node in _cameraTargets)
+		{
+			// GD.Print("node " + node );
+			_camera.addTarget(node);
+		}
 	}
 	
 	public NonRepeatingRandomSet<Vector2> GetSpawnPoints()
@@ -57,12 +71,25 @@ public partial class fireball_player_target_event : Node2D
 		if (Time.GetTicksMsec() - _lastSpawnMs > _currentSpawnDelay && _spawnedCount < _targetSpawnCount)
 		{
 			Node2D fireball = FireballScene.Instantiate<Node2D>();
-			AddChild(fireball);
 			fireball.GlobalPosition = _spawnPoints.GetRandom();
+			AddChild(fireball);
+			// fireball.GlobalPosition = _spawnPoints.GetRandom();
 			_lastSpawnMs = Time.GetTicksMsec();
 			_currentSpawnDelay = Random.Shared.Next(MinSpawnDelayMs, MaxSpawnDelayMs);
 			_spawnedCount++;
 		}
 		
+	}
+	
+	public void _on_child_exiting_tree(Node2D node)
+	{
+		if (GetChildCount() == 1 && _spawnedCount == _targetSpawnCount)
+		{
+			foreach (Node2D n in _cameraTargets)
+			{
+				_camera.removeTarget(n);
+			}
+			this.QueueFree();
+		}
 	}
 }

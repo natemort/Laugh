@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://prototype/FireballArea.cs" id="6_g2q1o"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_am530"]
-size = Vector2(8.6875, 17.5)
+size = Vector2(19, 6.33333)
 
 [sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4spfu"]
 load_path = "res://.godot/imported/tile_0005.png-8f244290ca920f870103c22e2e343e68.ctex"
@@ -47,23 +47,29 @@ animations = [{
 }],
 "loop": true,
 "name": &"new_animation",
-"speed": 5.0
+"speed": 11.0
 }]
 
-[node name="Fireball" type="Node2D"]
-position = Vector2(92, 56)
-
-[node name="Area2D" type="Area2D" parent="."]
-position = Vector2(0, 1)
-scale = Vector2(1, 1.4375)
+[node name="Fireball" type="Area2D"]
+scale = Vector2(3, 3)
 script = ExtResource("6_g2q1o")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
-position = Vector2(0, -0.52174)
-scale = Vector2(1, 0.695652)
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("RectangleShape2D_am530")
 
-[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="Area2D"]
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.90735e-06, -1.90735e-06)
+rotation = 1.5708
+scale = Vector2(1, 1.4375)
 sprite_frames = SubResource("SpriteFrames_6m8q0")
 animation = &"new_animation"
-frame_progress = 0.207302
+autoplay = "new_animation"
+frame_progress = 0.901047
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 4.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

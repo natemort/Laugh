@@ -4,13 +4,13 @@ using Laugh.code;
 
 public partial class EventManager : Node2D
 {
-	[Export(PropertyHint.File, "*.tscn")] public String[] Events;
+	[Export] public PackedScene[] Events;
 
 	[Export] public int EventDelayMinMs = 3_000;
 	[Export] public int EventDelayMaxMs = 15_000;
 
 	private bool _stopped = false;
-	private NonRepeatingRandomSet<String> _events;
+	private NonRepeatingRandomSet<PackedScene> _events;
 	private Node2D _currentEvent = null;
 
 	private float _currentEventDelay;
@@ -18,7 +18,7 @@ public partial class EventManager : Node2D
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
-		_events = new NonRepeatingRandomSet<string>(Events);
+		_events = new NonRepeatingRandomSet<PackedScene>(Events);
 		ResumeEvents();
 	}
 
@@ -62,8 +62,8 @@ public partial class EventManager : Node2D
 
 	private Node2D _CreateEvent()
 	{
-		String toCreate = _events.GetRandom();
-		return ResourceLoader.Load<PackedScene>(toCreate).Instantiate<Node2D>();
+		PackedScene toCreate = _events.GetRandom();
+		return toCreate.Instantiate<Node2D>();
 	}
 
 	public void OnChildExiting(Node node)

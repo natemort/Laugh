@@ -6,3 +6,5 @@
 [node name="FireballPlayerTargetEvent" type="Node2D"]
 script = ExtResource("1_jidng")
 FireballScene = ExtResource("2_xrp1x")
+
+[connection signal="child_exiting_tree" from="." to="." method="_on_child_exiting_tree"]

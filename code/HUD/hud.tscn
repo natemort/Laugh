@@ -56,5 +56,3 @@ script = ExtResource("2_ttnsr")
 [node name="Timer" type="Timer" parent="HUD/TimerLabel"]
 wait_time = 15.0
 autostart = true
-
-[connection signal="timeout" from="HUD/TimerLabel/Timer" to="HUD/TimerLabel" method="TriggerWeaponSwap"]

@@ -133,7 +133,7 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	}
 	private Vector2 DirectionalMovement(Vector2 velocity, double delta)
 	{
-		GD.Print("before movement: " + velocity.X);
+		// GD.Print("before movement: " + velocity.X);
 		if (Input.IsActionPressed(LeftControl) && ! (velocity.X < Speed * Vector2.Left.X * delta))
 		{
 			//GD.Print("left override");

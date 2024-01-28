@@ -1,4 +1,4 @@
-[gd_scene load_steps=2 format=3 uid="uid://corpmn72aly6k"]
+[gd_scene load_steps=2 format=3 uid="uid://bor4jdnhd6ses"]
 
 [ext_resource type="Script" path="res://code/event/ExplosionEvent.cs" id="1_a4r83"]
 

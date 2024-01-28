@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://cd6sros7a4wn1"]
+[gd_scene load_steps=13 format=3 uid="uid://cd6sros7a4wn1"]
 
 [ext_resource type="Script" path="res://code/character/PlayerController2.cs" id="1_4x5f6"]
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_cbcgy"]
@@ -7,6 +7,10 @@
 [ext_resource type="Script" path="res://code/event/EventManager.cs" id="7_m7prp"]
 [ext_resource type="Script" path="res://code/character/ArenaCamera.cs" id="7_ufxl1"]
 [ext_resource type="PackedScene" uid="uid://brlnubnrldbgt" path="res://code/HUD/hud.tscn" id="8_nodnu"]
+[ext_resource type="PackedScene" uid="uid://bwcyogubqj703" path="res://prototype/fireball_player_target_event.tscn" id="9_f5kjp"]
+[ext_resource type="Script" path="res://code/PlayerManager.cs" id="10_xux30"]
+[ext_resource type="PackedScene" path="res://prototype/lazergun.tscn" id="11_jo25s"]
+[ext_resource type="PackedScene" uid="uid://4mnyiwsaqy56" path="res://prototype/sword.tscn" id="12_0vuc2"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_bh4i0"]
 radius = 18.6011
@@ -56,70 +60,131 @@ texture = ExtResource("3_2ecdk")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="player2"]
 shape = SubResource("CircleShape2D_bh4i0")
 
-[node name="Camera2D" type="Camera2D" parent="."]
+[node name="Camera2D" type="Camera2D" parent="." node_paths=PackedStringArray("Targets") groups=["CameraGroup"]]
 position = Vector2(700, 269)
 script = ExtResource("7_ufxl1")
+Targets = [NodePath("../player1"), NodePath("../player2")]
 
 [node name="HUD" parent="." instance=ExtResource("8_nodnu")]
 
-[node name="CanvasLayer" type="CanvasLayer" parent="."]
+[node name="Fireball Spawns" type="CanvasLayer" parent="."]
 
-[node name="Node2D3" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D3" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(64, -390)
 
-[node name="Node2D4" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D4" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(217, -549)
 
-[node name="Node2D2" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D2" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(-275, -152)
 
-[node name="Node2D" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(-122, -311)
 
-[node name="Node2D5" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D5" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(-634, 178)
 
-[node name="Node2D6" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D6" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(-481, 19)
 
-[node name="Node2D7" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D7" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(-510, 570)
 
-[node name="Node2D8" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D8" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(-607, 323)
 
-[node name="Node2D9" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D9" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(2703, 70)
 
-[node name="Node2D10" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D10" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(2640, -135)
 
-[node name="Node2D11" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D11" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(2634, 428)
 
-[node name="Node2D12" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D12" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(2730, 215)
 
-[node name="Node2D13" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D13" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(2491, -425)
 
-[node name="Node2D14" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D14" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(2325, -543)
 
-[node name="Node2D15" type="Node2D" parent="CanvasLayer" groups=["FireballSpawnPoints"]]
+[node name="Node2D15" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
 position = Vector2(2518, -280)
 
-[node name="Node2D9" type="Node2D" parent="." groups=["FireballSpawnPoints"]]
-position = Vector2(1429, -734)
+[node name="Node2D16" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
+position = Vector2(2036, -696)
 
-[node name="Node2D10" type="Node2D" parent="." groups=["FireballSpawnPoints"]]
-position = Vector2(1366, -939)
+[node name="Node2D17" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
+position = Vector2(1973, -901)
 
-[node name="Node2D12" type="Node2D" parent="." groups=["FireballSpawnPoints"]]
-position = Vector2(1586, -612)
+[node name="Node2D18" type="Node2D" parent="Fireball Spawns" groups=["FireballSpawnPoints"]]
+position = Vector2(2193, -574)
 
 [node name="EventManager" type="Node2D" parent="."]
 script = ExtResource("7_m7prp")
-Events = PackedStringArray("res://prototype/explosion_event.tscn")
+Events = Array[PackedScene]([ExtResource("9_f5kjp")])
+
+[node name="SpawnPoints" type="CanvasLayer" parent="."]
+
+[node name="location44" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(872, 440)
+
+[node name="location43" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(234, 186)
+
+[node name="location45" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(234, 186)
+
+[node name="location46" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(234, 186)
+
+[node name="location47" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(234, 186)
+
+[node name="location48" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(234, 186)
+
+[node name="location49" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(234, 186)
+
+[node name="location50" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(234, 186)
+
+[node name="location51" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(234, 186)
+
+[node name="location52" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(872, 440)
+
+[node name="location53" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(872, 440)
+
+[node name="location54" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(872, 440)
+
+[node name="location55" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(872, 440)
+
+[node name="location56" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(872, 440)
+
+[node name="location57" type="Node2D" parent="SpawnPoints" groups=["SpawnPoints"]]
+position = Vector2(872, 440)
+
+[node name="PlayerManager" type="Node2D" parent="." groups=["PlayerManager"]]
+script = ExtResource("10_xux30")
+Weapons = Array[PackedScene]([ExtResource("11_jo25s"), ExtResource("12_0vuc2")])
+test = true
+
+[node name="FireballCameraPoints" type="CanvasLayer" parent="."]
+
+[node name="botleft" type="Node2D" parent="FireballCameraPoints" groups=["FireballCamera"]]
+position = Vector2(-155, 827)
+
+[node name="topright" type="Node2D" parent="FireballCameraPoints" groups=["FireballCamera"]]
+position = Vector2(2174, -144)
 
 [connection signal="child_exiting_tree" from="EventManager" to="EventManager" method="OnChildExiting"]

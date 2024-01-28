@@ -11,7 +11,7 @@ public partial class ArenaCamera : Camera2D
 	[Export] public float ZoomSpeed = 3f;
 	[Export] public float MinZoom = 5f; // camera wont zoom closer than this
 	[Export] public float MaxZoom = 0.5f; // camera wont zoom farther than this
-	[Export] public Array<NodePath> Targets = new();
+	[Export] public Array<Node2D> Targets = new();
 	[Export] public Vector2 Margin = new Vector2(400f, 250f);
 
 	private HashSet<Node2D> _targets = new HashSet<Node2D>();
@@ -21,9 +21,9 @@ public partial class ArenaCamera : Camera2D
 	public override void _Ready()
 	{
 		ScreenSize = this.GetViewportRect().Size;
-		foreach (NodePath path in Targets)
+		foreach (Node2D n in Targets)
 		{
-			_targets.Add(GetNode<Node2D>(path));
+			_targets.Add(n);
 		}
 	}
 
@@ -64,5 +64,16 @@ public partial class ArenaCamera : Camera2D
 		Zoom = Zoom.Lerp(Vector2.One * z, ZoomSpeed * (float)delta);
 		// GD.Print(Zoom);
 
+	}
+
+	public void addTarget(Node2D node)
+	{
+		_targets.Add(node);
+	}
+
+
+	public void removeTarget(Node2D node)
+	{
+		_targets.Remove(node);
 	}
 }
