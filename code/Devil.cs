@@ -35,7 +35,7 @@ public partial class Devil : AnimatedSprite2D
 
 	public override void _Process(double delta)
 	{
-		if (State == DevilState.Responding2 && (Time.GetTicksMsec() - _lastStateChange) > TextDelayMs)
+		if (State == DevilState.RespondingDelay && (Time.GetTicksMsec() - _lastStateChange) > TextDelayMs)
 		{
 			_text.Speak("I'm disappointed");
 			Play("idle");
@@ -53,7 +53,7 @@ public partial class Devil : AnimatedSprite2D
 			State = DevilState.AwaitingResponse;
 		} else if (State == DevilState.Responding)
 		{
-			State = DevilState.Responding2;
+			State = DevilState.RespondingDelay;
 			
 		} else if (State == DevilState.Responding2)
 		{
@@ -73,6 +73,7 @@ public partial class Devil : AnimatedSprite2D
 		Prompting,
 		AwaitingResponse,
 		Responding,
+		RespondingDelay,
 		Responding2,
 		Finished,
 	}
