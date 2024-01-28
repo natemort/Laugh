@@ -3,7 +3,7 @@ using Godot;
 
 namespace Laugh.code;
 
-public class TransitionManager : Node2D
+public partial class TransitionManager : Node2D
 {
 
     public static readonly String FinalScene = "res://finish_room.tscn";
