@@ -6,9 +6,10 @@ using Vector2 = Godot.Vector2;
 
 public partial class PlayerController2 : CharacterBody2D, Killable
 {
-	[Export] public float Speed = 300.0f;
-	[Export] public float JumpVelocity = -600f;
+	[Export] public float Speed = 500f;
+	[Export] public float JumpVelocity = -900f;
 	[Export] public float FastFallVelocity = 400f;
+	private float frames = 60f;
 
 	[Signal]
 	public delegate void DeathSignalEventHandler(PlayerController2 player);
@@ -31,7 +32,7 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	[Export] 
 	public String DashControl = "p1-dash";
 	[Export] 
-	public float DashForce = 5000f;
+	public float DashForce = 7500f;
 	private Vector2 _dashDirection = Vector2.Zero;
 	private bool _canDash = true;
 	private bool _dashing = false;
@@ -66,7 +67,11 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 
 	public override void _Ready()
 	{
-
+		Speed *= frames;
+		JumpVelocity *= frames;
+		DashForce *= frames;
+		FastFallVelocity *= frames;
+		
 		SetWeapon(ResourceLoader.Load<PackedScene>("res://prototype/revolver.tscn").Instantiate<Gun>());
 		_initialXScale = this.Scale.X;
 	}
@@ -91,7 +96,9 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	public override void _PhysicsProcess(double delta)
 	{
 		if (StopPhysics) return;
-		Vector2 velocity = Velocity;
+		Vector2 velocity = Velocity; 
+		GD.Print(this.PlayerName + " new iteration vel: " + velocity);
+		GD.Print("delta = " + delta);
 		
 		// Handle death conditions
 		if (Input.IsActionJustPressed(DeathControl))
@@ -99,48 +106,51 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 			Kill();
 		}
 
-		// Add the gravity.
+		velocity = Gravity(velocity, delta);
+		velocity = JumpAndFastFall(velocity, delta);
+		
+		velocity = DirectionalMovement(velocity, delta);
+		velocity = Dash(velocity, delta);
+		
+		
+		this.Velocity = velocity;
+		GD.Print("global velocity is: " + Velocity);
+		MoveAndSlide();
+	}
+
+	private Vector2 Gravity(Vector2 velocity, double delta)
+	{
 		if (!IsOnFloor())
-			velocity.Y += gravity * (float)delta;
+			velocity.Y += gravity * (float)delta * 1.5f;
 		if (IsOnFloor())
 			canDoubleJump = true;
-
-		// Handle Jump.
-		if (Input.IsActionJustPressed(JumpControl))
+		return velocity;
+	}
+	private Vector2 DirectionalMovement(Vector2 velocity, double delta)
+	{
+		GD.Print("before movement: " + velocity.X);
+		if (Input.IsActionPressed(LeftControl) && ! (velocity.X < Speed * Vector2.Left.X))
 		{
-			if (IsOnFloor())
-			{
-				velocity.Y = JumpVelocity;
-			} 
-			else if (canDoubleJump)
-			{
-				canDoubleJump = false;
-				velocity.Y = JumpVelocity;
-			}
-			
-		} else if (Input.IsActionJustPressed(FastFallControl) && !IsOnFloor()) // Fast Fall
-		{
-			if (velocity.Y < 0) velocity = Vector2.Zero;
-			velocity.Y += FastFallVelocity;
-		}
-
-		// Get the input direction and handle the movement/deceleration.
-		// As good practice, you should replace UI actions with custom gameplay actions.
-		
-		// velocity.X = Speed * Input.GetAxis(LeftControl, RightControl);
-		if (Input.IsActionPressed(LeftControl) && velocity.X >= Speed * Vector2.Left.X)
-		{
-			velocity.X = Speed * Vector2.Left.X;
+			GD.Print("left override");
+			velocity.X = Speed * Vector2.Left.X * (float)delta;
 			_dashDirection = Vector2.Left;
-		} else if (Input.IsActionPressed(RightControl) && velocity.X <= Speed * Vector2.Right.X)
+		} else if (Input.IsActionPressed(RightControl) && !(velocity.X > Speed * Vector2.Right.X))
 		{
-			velocity.X = Speed * Vector2.Right.X;
+			GD.Print("right override");
+			velocity.X = Speed * Vector2.Right.X * (float)delta;
 			_dashDirection = Vector2.Right;
 		}else
 		{
-			// smooth stop
-			velocity.X = velocity.Lerp(Vector2.One, 0.25f).X;
+			// smooth stopa
+			GD.Print("lerp override");
+			GD.Print("(Mathf.Lerp(Velocity.X, 0, 0.5f * (float)delta)) = " + (Mathf.Lerp(velocity.X, 0, 0.25f)));
+
+			velocity.X = (float)(Mathf.Lerp(velocity.X, 0, .25f));
+			// velocity.X =  velocity.Lerp(Vector2.One * _dashDirection *(float)delta, 0.1f).X * (float)delta;	
+			// velocity.X = (float) (Mathf.Lerp(velocity.X, Vector2.One.X * Input.GetAxis(LeftControl, RightControl), 0.1) * delta);
 		}
+		
+		
 		
 		if ((_isForward && velocity.X < 0) || (!_isForward && velocity.X > 0) )
 		{
@@ -150,31 +160,59 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 				X = -_initialXScale
 			};
 		}
+		GD.Print("after movement: " + velocity.X);
+		return velocity;
+	}
+	public Vector2 JumpAndFastFall(Vector2 velocity, double delta)
+	{
+		if (Input.IsActionJustPressed(JumpControl))
+		{
+			if (IsOnFloor())
+			{
+				velocity.Y = JumpVelocity * (float)delta;
+			} 
+			else if (canDoubleJump)
+			{
+				canDoubleJump = false;
+				velocity.Y = JumpVelocity * (float)delta;
+			}
+			
+		} else if (Input.IsActionJustPressed(FastFallControl) && !IsOnFloor()) // Fast Fall
+		{
+			if (velocity.Y < 0) velocity = Vector2.Zero * (float)delta;
+			velocity.Y += FastFallVelocity * (float)delta;
+		}
 		
-		velocity = Dash(velocity);
-		this.Velocity = velocity;
-		MoveAndSlide();
+		// Short hopping
+		if (Input.IsActionJustReleased(JumpControl) && velocity.Y < -100)
+		{
+			velocity.Y = -100 * (float)delta;
+		}
+
+		return velocity;
 	}
 
-	public Vector2 Dash(Vector2 velocity)
+	public Vector2 Dash(Vector2 velocity, double delta)
 	{
 		if (Input.IsActionJustPressed(DashControl) && _canDash)
 		{
 			// do animation?
 			GD.Print("dashing");
-			velocity = _dashDirection.Normalized() * DashForce;
+			GD.Print("dashing vel before:" + velocity);
+			velocity = _dashDirection.Normalized() * DashForce * (float)delta;
 			_canDash = false;
 			_dashing = true;
 			_lastDashMs = Time.GetTicksMsec();
-			GD.Print(velocity);
+			GD.Print("dashing vel after:" + velocity);
 		}
-		GD.Print(velocity);
+		// GD.Print(velocity);
 		// dash cooldown reset?
 		if (!_canDash && (Time.GetTicksMsec() - _lastDashMs) > _dashCooldownMs)
 		{
-			GD.Print("can dash again");
+			// GD.Print("can dash again");
 			_canDash = true;
 		}
+
 
 		return velocity;
 	}
