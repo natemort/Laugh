@@ -129,12 +129,12 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 	private Vector2 DirectionalMovement(Vector2 velocity, double delta)
 	{
 		GD.Print("before movement: " + velocity.X);
-		if (Input.IsActionPressed(LeftControl) && ! (velocity.X < Speed * Vector2.Left.X))
+		if (Input.IsActionPressed(LeftControl) && ! (velocity.X < Speed * Vector2.Left.X * delta))
 		{
 			GD.Print("left override");
 			velocity.X = Speed * Vector2.Left.X * (float)delta;
 			_dashDirection = Vector2.Left;
-		} else if (Input.IsActionPressed(RightControl) && !(velocity.X > Speed * Vector2.Right.X))
+		} else if (Input.IsActionPressed(RightControl) && !(velocity.X > Speed * Vector2.Right.X * delta))
 		{
 			GD.Print("right override");
 			velocity.X = Speed * Vector2.Right.X * (float)delta;
@@ -142,10 +142,10 @@ public partial class PlayerController2 : CharacterBody2D, Killable
 		}else
 		{
 			// smooth stopa
-			GD.Print("lerp override");
-			GD.Print("(Mathf.Lerp(Velocity.X, 0, 0.5f * (float)delta)) = " + (Mathf.Lerp(velocity.X, 0, 0.25f)));
+			// GD.Print("lerp override");
+			// GD.Print("(Mathf.Lerp(Velocity.X, 0, 0.5f * (float)delta)) = " + (Mathf.Lerp(velocity.X, 0, 0.25f)));
 
-			velocity.X = (float)(Mathf.Lerp(velocity.X, 0, .25f));
+			velocity.X = Mathf.Lerp(velocity.X, 0, .25f);
 			// velocity.X =  velocity.Lerp(Vector2.One * _dashDirection *(float)delta, 0.1f).X * (float)delta;	
 			// velocity.X = (float) (Mathf.Lerp(velocity.X, Vector2.One.X * Input.GetAxis(LeftControl, RightControl), 0.1) * delta);
 		}
