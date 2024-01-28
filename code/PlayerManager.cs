@@ -109,7 +109,7 @@ public partial class PlayerManager : Node2D
 		foreach (PlayerController2 player in _players)
 		{
 			GD.Print("disable player: " + player.PlayerName);
-			player.StopPhysics = true;
+			player.AllowMovement = true;
 		}
 		_currentPauseTimeMs = Time.GetTicksMsec();
 		_respawnState = RespawnState.death;
@@ -121,7 +121,7 @@ public partial class PlayerManager : Node2D
 		foreach (PlayerController2 player in _players)
 		{
 			GD.Print("reenable player: " + player.PlayerName);
-			player.StopPhysics = false;
+			player.AllowMovement = false;
 		}
 
 		_respawnState = RespawnState.none;
