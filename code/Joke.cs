@@ -6,18 +6,14 @@ public partial class Joke : Area2D
 	[Signal]
 	public delegate void JokeSelectedEventHandler();
 
+	public String JokeText;
 	private AnimatedText _text;
 	private bool _ready = false;
-
 	private bool _selected = false;
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()
 	{
 		_text = GetNode<AnimatedText>("JokeText");
-	}
-
-	public override void _Process(double delta)
-	{
 	}
 
 	public void OnDevilStateChange(int rawState)
@@ -41,7 +37,7 @@ public partial class Joke : Area2D
 
 	public void SelectJoke()
 	{
-		_text.Speak("A really really funny joke that makes everyone laugh");
+		_text.Speak(JokeText);
 	}
 
 	public void OnTextFinished()
