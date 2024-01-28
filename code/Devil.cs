@@ -1,10 +1,11 @@
 using Godot;
 using System;
+using Laugh.code;
 
 public partial class Devil : AnimatedSprite2D
 {
 
-	[Export] public float TextDelayMs = 3000;
+	[Export] public float TextDelayMs = 2000;
 	[Export] public String ArenaName = "res://code/HUD/ArenaScene.tscn";
 	[Signal]
 	public delegate void DevilStateChangeEventHandler(DevilState state);
@@ -45,11 +46,7 @@ public partial class Devil : AnimatedSprite2D
 			State = DevilState.Responding2;
 		} else if (State == DevilState.Finished && (Time.GetTicksMsec() - _lastStateChange) > TextDelayMs)
 		{
-			// Reset Game
-			GetTree().CurrentScene.QueueFree();
-			var newScene = _arena.Instantiate<Node2D>();
-			GetTree().Root.AddChild(newScene);
-			GetTree().CurrentScene = newScene;
+			this.GetTransitionManager().ReturnToArena();
 		}
 	}
 
