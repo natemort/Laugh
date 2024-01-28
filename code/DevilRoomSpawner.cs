@@ -8,8 +8,8 @@ public partial class DevilRoomSpawner : Node2D
 	public override void _Ready()
 	{
 		var player = this.GetTransitionManager().GetWinner();
-		this.GetParent().AddChild(player);
-		player.GlobalPosition = this.GlobalPosition;
+		this.AddChild(player);
+		player.GlobalPosition = this.GetNode<Node2D>("PlayerSpawn").GlobalPosition;
 	}
 
 }

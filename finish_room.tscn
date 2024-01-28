@@ -39,6 +39,7 @@ animations = [{
 }]
 
 [node name="FinishRoom" type="Node2D"]
+script = ExtResource("9_ohn2f")
 
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_v6pgq")
@@ -102,9 +103,8 @@ offset_bottom = -75.0
 script = ExtResource("7_iccou")
 CharactersPerMs = 0.01
 
-[node name="PlayerSpawn" type="Node2D" parent="." groups=["PlayerSpawn"]]
+[node name="PlayerSpawn" type="Node2D" parent="."]
 position = Vector2(604, -34)
-script = ExtResource("9_ohn2f")
 
 [connection signal="JokeSelected" from="Joke1" to="Devil" method="OnJokeSelected"]
 [connection signal="body_entered" from="Joke1" to="Joke1" method="OnBodyEntered"]
