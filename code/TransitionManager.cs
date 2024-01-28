@@ -8,7 +8,7 @@ public partial class TransitionManager : Node2D
 
     public static readonly String FinalScene = "res://finish_room.tscn";
     public static readonly String ArenaScene = "res://code/HUD/ArenaScene.tscn";
-    private String _winner;
+    private String _winner = "p1";
 
     public void ReturnToArena()
     {

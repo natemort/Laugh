@@ -50,7 +50,7 @@ layer_0/tile_data = PackedInt32Array(3, 131073, 6, 2, 393217, 7, 4, 131073, 6, 5
 script = ExtResource("2_glcn0")
 Targets = [NodePath("../Devil"), NodePath("../Joke1"), NodePath("../Joke2")]
 
-[node name="Joke1" type="Area2D" parent="."]
+[node name="Joke1" type="Area2D" parent="." groups=["Jokes"]]
 position = Vector2(416, -267)
 collision_mask = 2
 script = ExtResource("3_pxwyj")
@@ -60,15 +60,15 @@ position = Vector2(-0.5, 32.5)
 shape = SubResource("RectangleShape2D_cn43r")
 
 [node name="JokeText" type="RichTextLabel" parent="Joke1"]
-offset_left = -81.0
-offset_top = -115.0
-offset_right = 80.0
-offset_bottom = -12.0
+offset_left = -137.0
+offset_top = -133.0
+offset_right = 138.0
+offset_bottom = -13.0
 scroll_active = false
 script = ExtResource("7_iccou")
 CharactersPerMs = 0.05
 
-[node name="Joke2" type="Area2D" parent="."]
+[node name="Joke2" type="Area2D" parent="." groups=["Jokes"]]
 position = Vector2(800, -267)
 collision_mask = 2
 script = ExtResource("3_pxwyj")
@@ -78,13 +78,13 @@ position = Vector2(-1, 32)
 shape = SubResource("RectangleShape2D_ov2gu")
 
 [node name="JokeText" type="RichTextLabel" parent="Joke2"]
-offset_left = -82.0
-offset_top = -114.0
-offset_right = 79.0
-offset_bottom = -11.0
+offset_left = -137.0
+offset_top = -132.0
+offset_right = 138.0
+offset_bottom = -12.0
 scroll_active = false
 script = ExtResource("7_iccou")
-CharactersPerMs = 0.05
+CharactersPerMs = 0.04
 
 [node name="Devil" type="AnimatedSprite2D" parent="."]
 position = Vector2(1231, -137)
