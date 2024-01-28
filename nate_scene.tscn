@@ -1,7 +1,8 @@
-[gd_scene load_steps=5 format=3 uid="uid://cskqmkairoq0k"]
+[gd_scene load_steps=6 format=3 uid="uid://cskqmkairoq0k"]
 
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_4qw6u"]
 [ext_resource type="Script" path="res://code/character/PlayerController2.cs" id="4_eh2y8"]
+[ext_resource type="Script" path="res://code/event/EventManager.cs" id="4_n4ugr"]
 [ext_resource type="Texture2D" uid="uid://b3oaagq3y8iru" path="res://kenney_abstract-platformer/PNG/Enemies/enemyWalking_1.png" id="5_oni5p"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_mij0j"]
@@ -30,3 +31,40 @@ shape = SubResource("CircleShape2D_mij0j")
 
 [node name="Camera2D" type="Camera2D" parent="."]
 position = Vector2(499, -112)
+
+[node name="EventManager" type="Node2D" parent="."]
+script = ExtResource("4_n4ugr")
+Events = PackedStringArray("res://prototype/explosion_event.tscn")
+EventDelayMinMs = 10000
+
+[node name="ExplosionSpawn1" type="Node2D" parent="." groups=["ExplosionSpawnPoints"]]
+position = Vector2(-194, -448)
+
+[node name="ExplosionSpawn2" type="Node2D" parent="." groups=["ExplosionSpawnPoints"]]
+position = Vector2(202, -460)
+
+[node name="ExplosionSpawn3" type="Node2D" parent="." groups=["ExplosionSpawnPoints"]]
+position = Vector2(440, -456)
+
+[node name="ExplosionSpawn4" type="Node2D" parent="." groups=["ExplosionSpawnPoints"]]
+position = Vector2(937, -463)
+
+[node name="ExplosionSpawn5" type="Node2D" parent="." groups=["ExplosionSpawnPoints"]]
+position = Vector2(-70, -216)
+
+[node name="ExplosionSpawn6" type="Node2D" parent="." groups=["ExplosionSpawnPoints"]]
+position = Vector2(198, -40)
+
+[node name="ExplosionSpawn7" type="Node2D" parent="." groups=["ExplosionSpawnPoints"]]
+position = Vector2(310, -284)
+
+[node name="ExplosionSpawn8" type="Node2D" parent="." groups=["ExplosionSpawnPoints"]]
+position = Vector2(618, -316)
+
+[node name="ExplosionSpawn9" type="Node2D" parent="." groups=["ExplosionSpawnPoints"]]
+position = Vector2(938, -252)
+
+[node name="ExplosionSpawn10" type="Node2D" parent="." groups=["ExplosionSpawnPoints"]]
+position = Vector2(1254, -48)
+
+[connection signal="child_exiting_tree" from="EventManager" to="EventManager" method="OnChildExiting"]
