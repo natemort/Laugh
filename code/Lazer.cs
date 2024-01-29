@@ -32,6 +32,11 @@ public partial class Lazer : CharacterBody2D, Killable
 			}
 		}
 	}
+	
+	public void Launch(Vector2 direction)
+	{
+		Velocity = direction;
+	}
 
 	public void Kill()
 	{

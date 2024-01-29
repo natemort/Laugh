@@ -1,0 +1,17 @@
+[gd_scene load_steps=4 format=3 uid="uid://ypdne26fucyl"]
+
+[ext_resource type="Texture2D" uid="uid://ovx1lwy3trrc" path="res://texture/grenadelauncher.png" id="1_rr61c"]
+[ext_resource type="Script" path="res://code/Gun.cs" id="2_kre5w"]
+[ext_resource type="PackedScene" uid="uid://c43d1obdec02v" path="res://prototype/grenade.tscn" id="3_silvc"]
+
+[node name="GrenadeLauncher" type="Sprite2D" node_paths=PackedStringArray("FirePoint")]
+rotation = -0.274017
+scale = Vector2(0.2, 0.2)
+texture = ExtResource("1_rr61c")
+script = ExtResource("2_kre5w")
+FireAngleDegrees = -15
+BulletType = ExtResource("3_silvc")
+FirePoint = NodePath("FirePoint")
+
+[node name="FirePoint" type="Node2D" parent="."]
+position = Vector2(166.895, -32.0333)
