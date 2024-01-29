@@ -1,17 +1,19 @@
-[gd_scene load_steps=15 format=3 uid="uid://c2o47rt8ni8rd"]
+[gd_scene load_steps=16 format=3 uid="uid://c2o47rt8ni8rd"]
 
 [ext_resource type="Texture2D" uid="uid://hxdwm5hlsy80" path="res://background.jpg" id="1_lqpaw"]
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_w2o0g"]
 [ext_resource type="Script" path="res://code/character/ArenaCamera.cs" id="5_eud4v"]
 [ext_resource type="PackedScene" uid="uid://brlnubnrldbgt" path="res://code/HUD/hud.tscn" id="6_s8n7k"]
+[ext_resource type="PackedScene" uid="uid://corpmn72aly6k" path="res://prototype/explosion_event.tscn" id="7_0gpqg"]
 [ext_resource type="Script" path="res://code/event/EventManager.cs" id="7_t65qn"]
 [ext_resource type="PackedScene" uid="uid://cua2d6mefyv3l" path="res://FireballRowEvent.tscn" id="8_0wofh"]
+[ext_resource type="PackedScene" uid="uid://bwcyogubqj703" path="res://prototype/fireball_player_target_event.tscn" id="8_3l5g4"]
 [ext_resource type="Script" path="res://code/PlayerManager.cs" id="8_tasl1"]
 [ext_resource type="PackedScene" uid="uid://5limexikbdin" path="res://prototype/revolver.tscn" id="9_0dyv6"]
 [ext_resource type="PackedScene" uid="uid://86l6t3ajh12w" path="res://prototype/p1.tscn" id="9_7ujvh"]
 [ext_resource type="PackedScene" uid="uid://bywgbwb8ph87q" path="res://prototype/p2.tscn" id="10_aagy3"]
 [ext_resource type="PackedScene" uid="uid://4mnyiwsaqy56" path="res://prototype/sword.tscn" id="10_koaa1"]
-[ext_resource type="PackedScene" uid="uid://dpvyph08ym0u6" path="res://prototype/lazergun.tscn" id="11_7n211"]
+[ext_resource type="PackedScene" path="res://prototype/lazergun.tscn" id="11_7n211"]
 [ext_resource type="PackedScene" uid="uid://ypdne26fucyl" path="res://prototype/grenade_launcher.tscn" id="12_mblvd"]
 
 [node name="MainScene" type="Node2D"]
@@ -248,9 +250,8 @@ position = Vector2(-1345, -45)
 
 [node name="EventManager" type="Node2D" parent="." groups=["EventManager"]]
 script = ExtResource("7_t65qn")
-Events = Array[PackedScene]([ExtResource("8_0wofh")])
+Events = Array[PackedScene]([ExtResource("8_0wofh"), ExtResource("7_0gpqg"), ExtResource("8_3l5g4")])
 EventDelayMinMs = 5000
-EventDelayMaxMs = 30000
 
 [node name="PlayerManager" type="Node2D" parent="." groups=["PlayerManager"]]
 script = ExtResource("8_tasl1")
