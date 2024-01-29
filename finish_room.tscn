@@ -41,6 +41,15 @@ animations = [{
 [node name="FinishRoom" type="Node2D"]
 script = ExtResource("9_ohn2f")
 
+[node name="Background" type="Node2D" parent="."]
+
+[node name="ColorRect" type="ColorRect" parent="Background"]
+offset_left = -610.0
+offset_top = -1239.0
+offset_right = 2094.0
+offset_bottom = 796.0
+color = Color(0, 0, 0, 1)
+
 [node name="TileMap" type="TileMap" parent="."]
 tile_set = ExtResource("1_v6pgq")
 format = 2
