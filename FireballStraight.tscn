@@ -1,0 +1,77 @@
+[gd_scene load_steps=11 format=3 uid="uid://bdhj5hoyytxe7"]
+
+[ext_resource type="Script" path="res://FireballStraight.cs" id="1_6061c"]
+[ext_resource type="Texture2D" uid="uid://bhjs2kleu0klh" path="res://kenney_pixel-shmup/Tiles/USEME.png" id="1_duugu"]
+[ext_resource type="Texture2D" uid="uid://dhyvxnp4gknjc" path="res://kenney_pixel-shmup/Tiles/tile_0003.png" id="2_lnhuw"]
+[ext_resource type="Texture2D" uid="uid://bbuy0o6a7e35a" path="res://kenney_pixel-shmup/Tiles/useme3.png" id="3_47xsq"]
+[ext_resource type="Texture2D" uid="uid://dl2wkpufirouf" path="res://kenney_pixel-shmup/Tiles/useme4.png" id="4_dtdff"]
+[ext_resource type="Texture2D" uid="uid://cnripi7dbwa3u" path="res://kenney_pixel-shmup/Tiles/useme5.png" id="5_6poeq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vvqce"]
+size = Vector2(19, 6.33333)
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_4spfu"]
+load_path = "res://.godot/imported/tile_0005.png-8f244290ca920f870103c22e2e343e68.ctex"
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_1bpag"]
+load_path = "res://.godot/imported/tile_0006.png-1b341376470b916e0aa7908f38b7911c.ctex"
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_5i3sr"]
+animations = [{
+"frames": [{
+"duration": 3.2,
+"texture": SubResource("CompressedTexture2D_4spfu")
+}, {
+"duration": 4.61,
+"texture": SubResource("CompressedTexture2D_1bpag")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 0.5,
+"texture": ExtResource("1_duugu")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_lnhuw")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_47xsq")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_dtdff")
+}, {
+"duration": 1.0,
+"texture": ExtResource("5_6poeq")
+}],
+"loop": true,
+"name": &"new_animation",
+"speed": 11.0
+}]
+
+[node name="Area2D" type="Area2D"]
+scale = Vector2(6, 6)
+collision_layer = 4
+collision_mask = 2
+script = ExtResource("1_6061c")
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("RectangleShape2D_vvqce")
+
+[node name="AnimatedSprite2D2" type="AnimatedSprite2D" parent="."]
+position = Vector2(1.90735e-06, -1.90735e-06)
+rotation = 1.5708
+scale = Vector2(1, 1.4375)
+sprite_frames = SubResource("SpriteFrames_5i3sr")
+animation = &"new_animation"
+autoplay = "new_animation"
+frame = 3
+frame_progress = 0.564626
+
+[node name="Timer2" type="Timer" parent="."]
+wait_time = 6.0
+one_shot = true
+autostart = true
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
