@@ -26,4 +26,9 @@ public partial class KillArea : Area2D
 	public override void _Process(double delta)
 	{
 	}
+
+	public void Remove()
+	{
+		QueueFree();
+	}
 }

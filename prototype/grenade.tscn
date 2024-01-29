@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://c43d1obdec02v"]
+
+[ext_resource type="Script" path="res://code/Grenade.cs" id="1_xoaj4"]
+[ext_resource type="PackedScene" uid="uid://5jdjvmla6rov" path="res://prototype/explosion.tscn" id="2_hkmae"]
+[ext_resource type="Texture2D" uid="uid://cp5pe7sqgdxk8" path="res://texture/grenade.png" id="2_w28v2"]
+
+[sub_resource type="PhysicsMaterial" id="PhysicsMaterial_2qnvl"]
+bounce = 0.5
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_rm57r"]
+radius = 16.0
+
+[node name="Grenade" type="RigidBody2D"]
+collision_layer = 4
+collision_mask = 7
+physics_material_override = SubResource("PhysicsMaterial_2qnvl")
+max_contacts_reported = 10
+contact_monitor = true
+script = ExtResource("1_xoaj4")
+Explosion = ExtResource("2_hkmae")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_rm57r")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-3, -4)
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("2_w28v2")
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]

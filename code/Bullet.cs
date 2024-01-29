@@ -31,6 +31,11 @@ public partial class Bullet : CharacterBody2D, Killable
 		Kill();
 	}
 
+	public void Launch(Vector2 direction)
+	{
+		Velocity = direction;
+	}
+
 	public void Kill()
 	{
 		this.QueueFree();

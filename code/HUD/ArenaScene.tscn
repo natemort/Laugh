@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://c2o47rt8ni8rd"]
+[gd_scene load_steps=15 format=3 uid="uid://c2o47rt8ni8rd"]
 
 [ext_resource type="Texture2D" uid="uid://hxdwm5hlsy80" path="res://background.jpg" id="1_lqpaw"]
 [ext_resource type="TileSet" uid="uid://b6cnlx6ahy21u" path="res://tileset.tres" id="1_w2o0g"]
@@ -12,7 +12,8 @@
 [ext_resource type="PackedScene" uid="uid://86l6t3ajh12w" path="res://prototype/p1.tscn" id="9_7ujvh"]
 [ext_resource type="PackedScene" uid="uid://bywgbwb8ph87q" path="res://prototype/p2.tscn" id="10_aagy3"]
 [ext_resource type="PackedScene" uid="uid://4mnyiwsaqy56" path="res://prototype/sword.tscn" id="10_koaa1"]
-[ext_resource type="PackedScene" path="res://prototype/lazergun.tscn" id="11_7n211"]
+[ext_resource type="PackedScene" uid="uid://dpvyph08ym0u6" path="res://prototype/lazergun.tscn" id="11_7n211"]
+[ext_resource type="PackedScene" uid="uid://ypdne26fucyl" path="res://prototype/grenade_launcher.tscn" id="12_mblvd"]
 
 [node name="MainScene" type="Node2D"]
 
@@ -253,7 +254,7 @@ EventDelayMaxMs = 30000
 
 [node name="PlayerManager" type="Node2D" parent="." groups=["PlayerManager"]]
 script = ExtResource("8_tasl1")
-Weapons = Array[PackedScene]([ExtResource("11_7n211"), ExtResource("9_0dyv6"), ExtResource("10_koaa1")])
+Weapons = Array[PackedScene]([ExtResource("11_7n211"), ExtResource("9_0dyv6"), ExtResource("10_koaa1"), ExtResource("12_mblvd")])
 Players = Array[PackedScene]([ExtResource("9_7ujvh"), ExtResource("10_aagy3")])
 
 [node name="FireballPoints" type="CanvasLayer" parent="."]

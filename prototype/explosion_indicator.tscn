@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=3 uid="uid://bq2ospdu6sdv5"]
+
+[ext_resource type="Script" path="res://code/ExplosionIndicator.cs" id="1_en173"]
+[ext_resource type="Texture2D" uid="uid://dakuvrtsatjsd" path="res://texture/crosshair/1.png" id="2_1llai"]
+[ext_resource type="PackedScene" uid="uid://5jdjvmla6rov" path="res://prototype/explosion.tscn" id="2_48gqe"]
+[ext_resource type="Texture2D" uid="uid://dopr7t56ohoif" path="res://texture/crosshair/2.png" id="3_tt8pr"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_fe6pl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_1llai")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_tt8pr")
+}],
+"loop": true,
+"name": &"default",
+"speed": 5.0
+}]
+
+[node name="ExplosionIndicator" type="Node2D"]
+script = ExtResource("1_en173")
+ExplosionDelayMs = 2000.0
+Explosion = ExtResource("2_48gqe")
+
+[node name="Indicator" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_fe6pl")
+autoplay = "default"
+frame_progress = 0.0631282

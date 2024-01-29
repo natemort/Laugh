@@ -1,78 +1,50 @@
-[gd_scene load_steps=13 format=3 uid="uid://bq2ospdu6sdv5"]
+[gd_scene load_steps=9 format=3 uid="uid://5jdjvmla6rov"]
 
-[ext_resource type="Script" path="res://code/ExplosionIndicator.cs" id="1_en173"]
-[ext_resource type="Texture2D" uid="uid://dakuvrtsatjsd" path="res://texture/crosshair/1.png" id="2_1llai"]
-[ext_resource type="Texture2D" uid="uid://dopr7t56ohoif" path="res://texture/crosshair/2.png" id="3_tt8pr"]
-[ext_resource type="Texture2D" uid="uid://dy3qfargx8bq2" path="res://texture/explosion/smoke_06.png" id="4_jsb7h"]
-[ext_resource type="Texture2D" uid="uid://ts0nr17f7ie2" path="res://texture/explosion/smoke_07.png" id="5_hsmus"]
-[ext_resource type="Texture2D" uid="uid://l36an2engetu" path="res://texture/explosion/smoke_08.png" id="6_gpl85"]
-[ext_resource type="Texture2D" uid="uid://dpurtdhwjgf6o" path="res://texture/explosion/smoke_09.png" id="7_ydovb"]
-[ext_resource type="Texture2D" uid="uid://b3jhn0ms7iupj" path="res://texture/explosion/smoke_10.png" id="8_qrq6t"]
-[ext_resource type="Script" path="res://code/KillArea.cs" id="9_28hyd"]
+[ext_resource type="Script" path="res://code/KillArea.cs" id="1_j1xlu"]
+[ext_resource type="Texture2D" uid="uid://dy3qfargx8bq2" path="res://texture/explosion/smoke_06.png" id="2_0e5cm"]
+[ext_resource type="Texture2D" uid="uid://ts0nr17f7ie2" path="res://texture/explosion/smoke_07.png" id="3_lirtk"]
+[ext_resource type="Texture2D" uid="uid://l36an2engetu" path="res://texture/explosion/smoke_08.png" id="4_s3s5m"]
+[ext_resource type="Texture2D" uid="uid://dpurtdhwjgf6o" path="res://texture/explosion/smoke_09.png" id="5_wdrwl"]
+[ext_resource type="Texture2D" uid="uid://b3jhn0ms7iupj" path="res://texture/explosion/smoke_10.png" id="6_tskni"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_fe6pl"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_uqwmf"]
+radius = 139.703
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_1t8jn"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": ExtResource("2_1llai")
+"texture": ExtResource("2_0e5cm")
 }, {
 "duration": 1.0,
-"texture": ExtResource("3_tt8pr")
-}],
-"loop": true,
-"name": &"default",
-"speed": 5.0
-}]
-
-[sub_resource type="SpriteFrames" id="SpriteFrames_v2no8"]
-animations = [{
-"frames": [{
-"duration": 1.0,
-"texture": ExtResource("4_jsb7h")
+"texture": ExtResource("3_lirtk")
 }, {
 "duration": 1.0,
-"texture": ExtResource("5_hsmus")
+"texture": ExtResource("4_s3s5m")
 }, {
 "duration": 1.0,
-"texture": ExtResource("6_gpl85")
+"texture": ExtResource("5_wdrwl")
 }, {
 "duration": 1.0,
-"texture": ExtResource("7_ydovb")
-}, {
-"duration": 1.0,
-"texture": ExtResource("8_qrq6t")
+"texture": ExtResource("6_tskni")
 }],
 "loop": false,
 "name": &"default",
 "speed": 10.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_hlya1"]
-radius = 139.703
-
-[node name="ExplosionIndicator" type="Node2D"]
-script = ExtResource("1_en173")
-ExplosionDelayMs = 2000.0
-
-[node name="Indicator" type="AnimatedSprite2D" parent="."]
-sprite_frames = SubResource("SpriteFrames_fe6pl")
-autoplay = "default"
-frame_progress = 0.0631282
-
-[node name="Explosion" type="AnimatedSprite2D" parent="."]
-visible = false
-position = Vector2(1, 0)
-sprite_frames = SubResource("SpriteFrames_v2no8")
-frame_progress = 0.103275
-
-[node name="Hitbox" type="Area2D" parent="."]
+[node name="Hitbox" type="Area2D"]
 collision_layer = 4
 collision_mask = 6
-script = ExtResource("9_28hyd")
+script = ExtResource("1_j1xlu")
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox"]
-shape = SubResource("CircleShape2D_hlya1")
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_uqwmf")
 
-[connection signal="animation_finished" from="Explosion" to="." method="OnAnimationFinished"]
-[connection signal="area_shape_entered" from="Hitbox" to="Hitbox" method="OnBodyEntered"]
-[connection signal="body_entered" from="Hitbox" to="Hitbox" method="OnBodyEntered"]
+[node name="Explosion" type="AnimatedSprite2D" parent="."]
+position = Vector2(1, 0)
+sprite_frames = SubResource("SpriteFrames_1t8jn")
+autoplay = "default"
+
+[connection signal="body_entered" from="." to="." method="OnBodyEntered"]
+[connection signal="animation_finished" from="Explosion" to="." method="Remove"]

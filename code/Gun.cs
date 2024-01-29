@@ -6,6 +6,8 @@ public partial class Gun : Sprite2D, Weapon
 {
 	[Export]
 	public double FireDelayMs = 1000;
+
+	[Export] public int FireAngleDegrees = 0;
 	[Export]
 	public float BulletSpeed = 1500;
 
@@ -14,18 +16,12 @@ public partial class Gun : Sprite2D, Weapon
 
 	private double _lastFired;
 
-	// Called when the node enters the scene tree for the first time.
-	public override void _Ready()
-	{
-		
-	}
-
 	public void Fire()
 	{
 		if ((Time.GetTicksMsec() - _lastFired) > FireDelayMs)
 		{
 			this._lastFired = Time.GetTicksMsec();
-			var bullet = BulletType.Instantiate<CharacterBody2D>();
+			var bullet = BulletType.Instantiate<Node2D>();
 			this.GetTree().Root.AddChild(bullet);
 			var spawnPoint = FirePoint.GlobalPosition;
 			bullet.GlobalPosition = spawnPoint;
@@ -33,8 +29,15 @@ public partial class Gun : Sprite2D, Weapon
 			if (direction.X < 0)
 			{
 				bullet.Scale = bullet.Scale with { X = -1 };
+				direction = direction.Rotated(Mathf.DegToRad(-FireAngleDegrees));
 			}
-			bullet.Velocity = direction * BulletSpeed;
+			else
+			{
+				direction = direction.Rotated(Mathf.DegToRad(FireAngleDegrees));
+			}
+
+			bullet.Call("Launch", direction * BulletSpeed);
+			//bullet.Velocity = direction * BulletSpeed;
 		}
 	}
 }
